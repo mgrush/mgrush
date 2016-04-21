@@ -10,19 +10,19 @@ webpackJsonp([2],{
 
 	__webpack_require__(/*! ./index.less */ 181);
 
-	var _react = __webpack_require__(/*! react */ 8);
+	var _react = __webpack_require__(/*! react */ 7);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(/*! react-dom */ 33);
+	var _reactDom = __webpack_require__(/*! react-dom */ 25);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _header = __webpack_require__(/*! ../../components/header */ 53);
+	var _header = __webpack_require__(/*! ../../components/header */ 34);
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _fullpage = __webpack_require__(/*! ../../components/fullpage */ 91);
+	var _fullpage = __webpack_require__(/*! ../../components/fullpage */ 90);
 
 	var _fullpage2 = _interopRequireDefault(_fullpage);
 
@@ -1640,7 +1640,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 91:
+/***/ 90:
 /*!**************************************!*\
   !*** ./components/fullpage/index.js ***!
   \**************************************/
@@ -1648,13 +1648,13 @@ webpackJsonp([2],{
 
 	"use strict";
 
-	__webpack_require__(/*! ./jquery.fullPage.css */ 174);
+	__webpack_require__(/*! ./jquery.fullPage.css */ 173);
 
-	module.exports = __webpack_require__(/*! ./jquery.fullPage.js */ 92);
+	module.exports = __webpack_require__(/*! ./jquery.fullPage.js */ 91);
 
 /***/ },
 
-/***/ 92:
+/***/ 91:
 /*!************************************************!*\
   !*** ./components/fullpage/jquery.fullPage.js ***!
   \************************************************/
@@ -2231,7 +2231,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 174:
+/***/ 173:
 /*!*************************************************!*\
   !*** ./components/fullpage/jquery.fullPage.css ***!
   \*************************************************/

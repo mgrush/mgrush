@@ -4,7 +4,7 @@ import "./index.less";
 import React from "react";
 import Logo from "../logo";
 import Menu from "../menu";
-import Dropdown from "../dropdown";
+import UserLogo from "../user-logo";
 
 export default class Header extends React.Component {
 	state = {}
@@ -14,8 +14,8 @@ export default class Header extends React.Component {
 			<div className="m-header" onClick={this.onClick}>
 				<div className="header-content">
 					<Logo />
-					<Dropdown />
-					<Menu />
+					<UserLogo/>
+					<Menu/>
 				</div>
 			</div>		
 		);

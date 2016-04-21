@@ -3,7 +3,7 @@
 import "./index.less";
 import React from "react";
 
-export default class Dropdown extends React.Component {
+export default class UserLogo extends React.Component {
 	state = {}
 
 	render(){

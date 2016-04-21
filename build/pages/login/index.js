@@ -1,4 +1,4 @@
-webpackJsonp([4],[
+webpackJsonp([5],[
 /* 0 */
 /*!******************************!*\
   !*** ./pages/login/index.js ***!
@@ -7,11 +7,11 @@ webpackJsonp([4],[
 
 	"use strict";
 
-	var _react = __webpack_require__(/*! react */ 8);
+	var _react = __webpack_require__(/*! react */ 7);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(/*! react-dom */ 33);
+	var _reactDom = __webpack_require__(/*! react-dom */ 25);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
