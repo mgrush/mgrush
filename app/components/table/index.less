@@ -1,0 +1,90 @@
+@import "../base/index.less";
+
+.button {
+	display: inline-block;
+	margin: 2.0rem 4.0rem 2.0rem 0;
+	background: #3385ff;
+	padding: 1.0rem 2.0rem;
+	font-size: 1.6rem;
+	color: #fff;
+}
+
+/** table数据样式设计 **/
+.m-datalist .table-content {
+	.t-title {
+		//{{{ 表格标题样式
+		.background();
+		.border(left);
+		.border(top);
+		.border(right);
+		.padding(0, 1.0rem);
+		.height(4.0rem, 4.0rem);
+		.borderRadius(0.4rem, 0.4rem);
+		//}}}
+	}
+
+	table {
+		//{{{ 表格样式
+		.width(99.99%);
+
+		td, th {
+			.border();
+			.background();
+			.padding(0, 1.0rem);
+			.height(3.0rem, 3.0rem);
+
+			text-align: left;
+			cursor: pointer;
+		}
+
+		th {
+			.height(3.6rem, 3.6rem);
+		}
+
+		tbody tr:nth-child(2n) td {
+			.background(#f3f7f6);
+		}
+
+		tbody tr:hover td {
+			.background(#ecf7f4);   
+		}
+
+		//}}}
+	}
+
+	.t-footer {
+		//{{{ 分页导航
+		.background();
+		.border(left);
+		.border(right);
+		.border(bottom);
+		.height(3.6rem, 3.6rem);
+		.borderRadius(0, 0, 0.4rem, 0.4rem);
+
+		ul {
+			.float(right);
+
+			li {
+				.float(left);
+				.width(3.6rem);
+				.height(3.6rem, 3.6rem);
+				.border(right);
+				
+				cursor: pointer;
+				text-align: center;
+
+				&:first-child{
+					.border(left);
+				}
+
+				&:last-child {
+					.border(right, 0rem);
+				}
+
+				&.selected {
+				}
+			}
+		}
+		//}}}
+	}
+}

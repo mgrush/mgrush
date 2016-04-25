@@ -11,7 +11,6 @@ export default class Logo extends React.Component {
 	}
 
 	render() {
-		console.log(this.state.name);
 		return (
 			<div className="m-logo"></div>	
 		);

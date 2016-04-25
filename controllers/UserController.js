@@ -8,7 +8,14 @@ var UserController	= {
 	// 验证用户登录
 	checkUserLogin : function(req, res){
 		
-	} 
+	},
+
+	// 测试接口：获取用户列表
+	getUserList : function(req, res){
+		res.send(JSON.stringify({
+			name : "mgrush"
+		}));
+	}
 };
 
 

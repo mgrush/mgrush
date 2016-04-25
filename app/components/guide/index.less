@@ -2,6 +2,10 @@
 
 .m-guide {
 	background-color: @white;
-	border: 0.1rem solid @borderColor;
-	border-radius: @borderRadiusUnit * 2;
+	border-radius: @unit * 2;
+
+	.border(top);
+	.border(right);
+	.border(bottom);
+	.border(left);
 }

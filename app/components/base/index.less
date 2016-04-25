@@ -20,12 +20,69 @@
 @contentWidth : 114.0rem;
 
 /** 最小数据单元 **/
-@borderRadiusUnit : 0.4rem;
+@unit : 0.4rem;
 
 /** 通用颜色设置 **/
 @dark : #333;
 @light : #666;
 @white : #fff;
 @bright : green;
-@borderColor : #e5e5e5;
 @bodyBgColor : #f6f6f6;
+
+/** float-left, float-right **/
+.float(@dir) {
+	float: @dir;
+}
+
+/** 背景设置 **/
+.background(@background: #FFF){
+	background: @background;
+}
+
+/** height, width **/
+.width(@width: initial){
+	width: @width;
+}
+
+.height(@height: initial, @lineHeight: initial){
+	height: @height;
+	line-height: @lineHeight;
+}
+
+/** border, border-radius等方法 **/
+.border(@border: 0.1rem solid #e5e5e5){
+	border: @border;
+}
+
+.border(@dir, @width: 0.1rem) {
+	border-@{dir}: @width solid #e5e5e5;
+}
+
+.borderRadius(@topLeft: 0, @topRight: 0, @bottomRight: 0, @bottomLeft: 0){
+	border-radius: @topLeft @topRight @bottomRight @bottomLeft;
+}
+
+/** position定位方法 **/
+.position(@posi, @top: auto, @right: auto, @bottom: auto, @left: auto, @zIndex: initial){
+	position: @posi;
+	top: @top;
+	right: @right;
+	bottom: @bottom;
+	left: @left;
+	z-index: initial;
+}
+
+/** padding, margin 方法 **/
+.padding(@paddingTop: auto, @paddingRight: @paddingTop, @paddingBottom: @paddingTop, @paddingLeft: @paddingRight){
+	padding: @paddingTop @paddingRight @paddingBottom @paddingLeft;
+}
+
+.margin(@marginTop: auto, @marginRight: @marginTop, @marginBottom: @marginTop, @marginLeft: @marginRight){
+	margin: @marginTop @marginRight @marginBottom @marginLeft;
+}
+
+/** overflow **/
+.overflow(@overflowX: auto, @overflowY: auto){
+	overflow-x: @overflowX;
+	overflow-y: @overflowY;
+}
