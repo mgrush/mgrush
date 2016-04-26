@@ -1,77 +1,51 @@
 "use strict";
 
 import { EventEmitter } from "events";
+import Constants from "./constants";
+import BaseUtil from "../base/util";
 import AppDispatcher from "../dispatcher";
 
-const CHANGE_EVENT = Symbol("change");
-
 let TableStore = Object.assign({}, EventEmitter.prototype, {
-	data : [{
-		id : 24,
-		name : "mgrush",
-		age : "25",
-		gender : "male"
-	}, {
-		id : 25,
-		name : "mgrush01",
-		age : "26",
-		gender : "female"
-	}, {
-		id : 24,
-		name : "mgrush",
-		age : "25",
-		gender : "male"
-	}, {
-		id : 25,
-		name : "mgrush01",
-		age : "26",
-		gender : "female"
-	}, {
-		id : 24,
-		name : "mgrush",
-		age : "25",
-		gender : "male"
-	}, {
-		id : 25,
-		name : "mgrush01",
-		age : "26",
-		gender : "female"
-	}, {
-		id : 24,
-		name : "mgrush",
-		age : "25",
-		gender : "male"
-	}, {
-		id : 25,
-		name : "mgrush01",
-		age : "26",
-		gender : "female"
-	}],
-
-	getData(){
-		return this.data;
+	getData(dataSource, params){
+		return new Promise((resolve, reject) => {
+			// 缓存数据
+			if( BaseUtil.isArray(dataSource) ) {
+				return resolve({
+					data : dataSource,
+					count : dataSource.length
+				});
+			}
+			
+			// 服务端异步数据
+			BaseUtil.getJSON(dataSource, params).then((result) => {
+				if( result.status == 0 ) {
+					resolve( result );
+				}else {
+					reject( result.msg );
+				}
+			});
+		});
 	},
 
 	create(itemData){
-		this.data.push(itemData);
 	},
 
 	emitChange(){
-		this.emit( CHANGE_EVENT );
+		this.emit( Constants.CHANGE_EVENT );
 	},
 
 	addChangeListener(callback){
-		this.on(CHANGE_EVENT, callback);
+		this.on( Constants.CHANGE_EVENT, callback );
 	},
 
 	removeChangeListener(callback){
-		this.removeListener(CHANGE_EVENT, callback);
+		this.removeListener( Constants.CHANGE_EVENT, callback );
 	}
 });
 
 AppDispatcher.register(( action ) => {
 	switch( action.actionType ) {
-		case "CREATE" : 
+		case Constants.ADD_ITEM : 
 			TableStore.create(action.data);
 			TableStore.emitChange();
 	}

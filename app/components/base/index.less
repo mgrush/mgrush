@@ -50,15 +50,15 @@
 }
 
 /** border, border-radius等方法 **/
-.border(@border: 0.1rem solid #e5e5e5){
-	border: @border;
+.border(){
+	border: 0.1rem solid #e5e5e5;
 }
 
 .border(@dir, @width: 0.1rem) {
 	border-@{dir}: @width solid #e5e5e5;
 }
 
-.borderRadius(@topLeft: 0, @topRight: 0, @bottomRight: 0, @bottomLeft: 0){
+.borderRadius(@topLeft: 0, @topRight: @topLeft, @bottomRight: @topRight, @bottomLeft: @topLeft){
 	border-radius: @topLeft @topRight @bottomRight @bottomLeft;
 }
 

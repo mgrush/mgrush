@@ -25,13 +25,26 @@ let tableProps = {
 		id : "序号",
 		name : "姓名",
 		age : "年龄",
-		gender : "性别"
+		gender : {
+			title : "性别",
+			map : {
+				female : "女",
+				male : "男"
+			}
+		}
 	},
-	data : []
+	/*
+	data : [
+		{ id : 1, name : 23, age : 23, gender : 23},
+		{ id : 1, name : 23, age : 23, gender : 23},
+		{ id : 1, name : 23, age : 23, gender : 23},
+		{ id : 1, name : 23, age : 23, gender : 23}
+	]
+	*/
+	data : "/user/getUserList"
 };
 
 ReactDOM.render(
 	<Table {...tableProps} />,
 	document.getElementById("m-content")
 );
-
