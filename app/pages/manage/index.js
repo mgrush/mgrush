@@ -22,23 +22,27 @@ ReactDOM.render(
 let tableProps = {
 	title : "数据表格标题",
 	columns : {
-		id : "序号",
-		name : "姓名",
+		id : {
+			title : "序号",
+			editable : false
+		},
+		username : "姓名",
 		age : "年龄",
 		gender : {
 			title : "性别",
 			map : {
-				female : "女",
-				male : "男"
-			}
+				0 : "女",
+				1 : "男"
+			},
+			hint : "请选择性别"
 		}
 	},
 	/*
 	data : [
-		{ id : 1, name : 23, age : 23, gender : 23},
-		{ id : 1, name : 23, age : 23, gender : 23},
-		{ id : 1, name : 23, age : 23, gender : 23},
-		{ id : 1, name : 23, age : 23, gender : 23}
+		{ id : 1, username : 23, age : 23, gender : 23},
+		{ id : 1, username : 23, age : 23, gender : 23},
+		{ id : 1, username : 23, age : 23, gender : 23},
+		{ id : 1, username : 23, age : 23, gender : 23}
 	]
 	*/
 	data : "/user/getUserList"

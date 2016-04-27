@@ -39,6 +39,7 @@
     "jquery": "^2.2.3",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
+    "mysql": "^2.10.2",
     "nodemon": "^1.9.1",
     "object-assign": "^4.0.1",
     "react": "^0.14.7",

@@ -1,6 +1,8 @@
 "use strict";
 
-// 用户中心控制器
+const Promise = require("promise");
+const Connection = require("../components/mysql").getConnection();
+
 var UserController	= {
 	// 显示用户登录界面
 	login : function(req, res){
@@ -18,19 +20,16 @@ var UserController	= {
 		let page = req.query.page;
 		let size = req.query.size;
 
-		for(let index = page * size; index < (parseInt(page) + 1) * size; index++) {
-			userList.push({
-				id : index + 1,
-				name : "mgrush",
-				age : "25",
-				gender : "male"
-			});
-		}
+		Connection.query("SELECT * FROM user", function(err, rows){
+			for(let index = 0; index < rows.length; index++) {
+				userList.push(rows[index]);
+			}
 
-		return res.json({
-			status : 0,
-			data : userList,
-			count : 120
+			res.json({
+				status : 0,
+				data : userList,
+				count : 0
+			});
 		});
 	}
 };

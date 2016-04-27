@@ -84,7 +84,7 @@ body {
   padding: 0 1rem 0 1rem;
   height: 4rem;
   line-height: 4rem;
-  border-radius: 0.4rem 0.4rem 0.4rem 0.4rem;
+  border-radius: 0.4rem 0.4rem 0 0;
 }
 .m-datalist .table-content table {
   width: 100%;
@@ -138,6 +138,110 @@ body {
 }
 .m-datalist .table-content .t-footer ul li.selected {
   background: #ecf7f4;
+}
+/** 字体大小设置 **/
+/** 通用模块大小 **/
+/** 最小数据单元 **/
+/** 通用颜色设置 **/
+/** float-left, float-right **/
+/** 背景设置 **/
+/** height, width **/
+/** border, border-radius等方法 **/
+/** position定位方法 **/
+/** padding, margin 方法 **/
+/** overflow **/
+.m-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: initial;
+  background: rgba(0, 0, 0, 0.6);
+}
+.m-modal .main {
+  background: #FFF;
+  border-radius: 0.8rem 0.8rem 0.8rem 0.8rem;
+  width: 48rem;
+  height: 40rem;
+  line-height: initial;
+  position: absolute;
+  top: 50%;
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  z-index: initial;
+  margin: -20rem auto auto -24rem;
+}
+.m-modal .main .title {
+  border-bottom: 0.1rem solid #e5e5e5;
+  padding: 0 2rem 0 2rem;
+  height: 5rem;
+  line-height: 5rem;
+}
+.m-modal .main .content {
+  padding: 1.2rem 2rem 1.2rem 2rem;
+  height: 30rem;
+  line-height: initial;
+}
+.m-modal .main .toolbar {
+  border-top: 0.1rem solid #e5e5e5;
+  padding: 0 2rem 0 2rem;
+  height: 5rem;
+  line-height: 5rem;
+  text-align: right;
+}
+.m-modal .main .toolbar span {
+  padding: 0rem 1.5rem 0rem 1.5rem;
+  border-radius: 0.4rem 0.4rem 0.4rem 0.4rem;
+  margin: auto auto auto 1rem;
+  height: 3.2rem;
+  line-height: 3.2rem;
+  color: #FFF;
+  display: inline-block;
+}
+.m-modal .main .toolbar span:last-child {
+  background: #FF3858;
+}
+.m-modal .main .toolbar span:nth-last-child(2) {
+  background: #00A0E8;
+}
+/** 字体大小设置 **/
+/** 通用模块大小 **/
+/** 最小数据单元 **/
+/** 通用颜色设置 **/
+/** float-left, float-right **/
+/** 背景设置 **/
+/** height, width **/
+/** border, border-radius等方法 **/
+/** position定位方法 **/
+/** padding, margin 方法 **/
+/** overflow **/
+.m-form .item {
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  z-index: initial;
+  height: 3.6rem;
+  line-height: 3.6rem;
+  padding: 0 0.8rem 0 5rem;
+}
+.m-form .item label {
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: 0;
+  left: 0;
+  z-index: initial;
+}
+.m-form .item input {
+  border: 0.1rem solid #e5e5e5;
+  border-radius: 0.4rem 0.4rem 0.4rem 0.4rem;
+  height: 3rem;
+  line-height: 3rem;
+  padding: 0 1rem 0 1rem;
 }
 /** 字体大小设置 **/
 /** 通用模块大小 **/
