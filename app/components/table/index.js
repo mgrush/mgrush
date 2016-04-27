@@ -3,12 +3,13 @@
 import "./index.less";
 import React from "react";
 import ReactDom from "react-dom";
+
 import TableActions from "./actions";
 import TableStore from "./store";
 import Constants from "./constants";
+
 import BaseUtil from "../base/util";
-import Modal from "../modal";
-import Form from "../form";
+import Form from "../Form";
 import Layer from "../Layer";
 
 export default class Table extends React.Component {
@@ -68,11 +69,14 @@ export default class Table extends React.Component {
 		// 表格数据列表
 		let dataRows = this.state.data && this.state.data.length ? this.state.data.map((item, index) => {
 			let columns = BaseUtil.map(this.state.columns, (pname, column) => {
-				let pvalue = item[pname];
+				let isObj = BaseUtil.isObject(column);
+				let hasMap = isObj && BaseUtil.isObject(column.map);
+				let hasRender = isObj && BaseUtil.isFunc(column.render);
+				let pvalue = hasMap ? column.map[ item[pname] ] : item[ pname ];
 
 				return (
 					<td data-key={pname} key={pname}>
-						{BaseUtil.isObject(column) && BaseUtil.isObject(column.map) ? column.map[pvalue] : pvalue}
+					{ hasRender ? column.render(pvalue) : pvalue }
 					</td>	
 				);
 			});
@@ -121,13 +125,15 @@ export default class Table extends React.Component {
 			actions : [{
 				name : "确定",
 				className : "confirm",
-				action : (content) => {
+				action : () => {
+					let formData = Form.getFormData();
+
+					console.log(formData);
 				}
 			}, {
 				name : "取消",
 				className : "cancel",
-				action : (content) => {
-					content.parentNode.remove();
+				action : () => {
 				}
 			}] 
 		} 

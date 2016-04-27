@@ -7,11 +7,11 @@ webpackJsonp([5],[
 
 	"use strict";
 
-	var _react = __webpack_require__(/*! react */ 4);
+	var _react = __webpack_require__(/*! react */ 5);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(/*! react-dom */ 15);
+	var _reactDom = __webpack_require__(/*! react-dom */ 18);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 

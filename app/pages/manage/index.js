@@ -3,10 +3,10 @@
 import "./index.less";
 import React from "react";
 import ReactDOM from "react-dom";
-import Header from "../../components/header";
-import AsideMenu from "../../components/aside-menu";
 
-import Table from "../../components/table";
+import Header from "../../components/Header";
+import AsideMenu from "../../components/AsideMenu";
+import Table from "../../components/Table";
 
 ReactDOM.render(
 	<Header />,
@@ -35,16 +35,19 @@ let tableProps = {
 				1 : "男"
 			},
 			hint : "请选择性别"
+		},
+		_operation : {
+			title : "操作",
+			render : () => {
+				return (
+					<div className="t-operation">
+						<span className="edit">编辑</span>
+						<span className="delete">删除</span>
+					</div>		
+				);
+			}
 		}
 	},
-	/*
-	data : [
-		{ id : 1, username : 23, age : 23, gender : 23},
-		{ id : 1, username : 23, age : 23, gender : 23},
-		{ id : 1, username : 23, age : 23, gender : 23},
-		{ id : 1, username : 23, age : 23, gender : 23}
-	]
-	*/
 	data : "/user/getUserList"
 };
 

@@ -26,6 +26,42 @@ body {
 /** position定位方法 **/
 /** padding, margin 方法 **/
 /** overflow **/
+.m-header {
+  border-bottom: 0.1rem solid #e5e5e5;
+  height: 6rem;
+  line-height: 6rem;
+  background: rgba(255, 255, 255, 0.8);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: auto;
+  left: 0;
+  z-index: initial;
+}
+.m-header .header-content {
+  margin: 0 auto 0 auto;
+  height: 6rem;
+  line-height: initial;
+  width: 114rem;
+}
+.m-header .m-logo {
+  margin: 1.4rem 0rem 1.4rem 0rem;
+}
+.m-header .m-dropdown,
+.m-header .m-menu {
+  float: right;
+}
+/** 字体大小设置 **/
+/** 通用模块大小 **/
+/** 最小数据单元 **/
+/** 通用颜色设置 **/
+/** float-left, float-right **/
+/** 背景设置 **/
+/** height, width **/
+/** border, border-radius等方法 **/
+/** position定位方法 **/
+/** padding, margin 方法 **/
+/** overflow **/
 /** 变量定义 **/
 .m-aside-menu {
   border-right: 0.1rem solid #e5e5e5;
@@ -86,6 +122,22 @@ body {
   line-height: 4rem;
   border-radius: 0.4rem 0.4rem 0 0;
 }
+.m-datalist .table-content .t-operation span {
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 0.4rem 0.4rem 0.4rem 0.4rem;
+  padding: 0 1.2rem 0 1.2rem;
+  margin: 0 0.8rem 0 0;
+  height: 2.1rem;
+  line-height: 2.1rem;
+}
+.m-datalist .table-content .t-operation span.edit {
+  background: #00A0E8;
+}
+.m-datalist .table-content .t-operation span.delete {
+  background: #FF3858;
+}
 .m-datalist .table-content table {
   width: 100%;
 }
@@ -138,73 +190,6 @@ body {
 }
 .m-datalist .table-content .t-footer ul li.selected {
   background: #ecf7f4;
-}
-/** 字体大小设置 **/
-/** 通用模块大小 **/
-/** 最小数据单元 **/
-/** 通用颜色设置 **/
-/** float-left, float-right **/
-/** 背景设置 **/
-/** height, width **/
-/** border, border-radius等方法 **/
-/** position定位方法 **/
-/** padding, margin 方法 **/
-/** overflow **/
-.m-modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: initial;
-  background: rgba(0, 0, 0, 0.6);
-}
-.m-modal .main {
-  background: #FFF;
-  border-radius: 0.8rem 0.8rem 0.8rem 0.8rem;
-  width: 48rem;
-  height: 40rem;
-  line-height: initial;
-  position: absolute;
-  top: 50%;
-  right: auto;
-  bottom: auto;
-  left: 50%;
-  z-index: initial;
-  margin: -20rem auto auto -24rem;
-}
-.m-modal .main .title {
-  border-bottom: 0.1rem solid #e5e5e5;
-  padding: 0 2rem 0 2rem;
-  height: 5rem;
-  line-height: 5rem;
-}
-.m-modal .main .content {
-  padding: 1.2rem 2rem 1.2rem 2rem;
-  height: 30rem;
-  line-height: initial;
-}
-.m-modal .main .toolbar {
-  border-top: 0.1rem solid #e5e5e5;
-  padding: 0 2rem 0 2rem;
-  height: 5rem;
-  line-height: 5rem;
-  text-align: right;
-}
-.m-modal .main .toolbar span {
-  padding: 0rem 1.5rem 0rem 1.5rem;
-  border-radius: 0.4rem 0.4rem 0.4rem 0.4rem;
-  margin: auto auto auto 1rem;
-  height: 3.2rem;
-  line-height: 3.2rem;
-  color: #FFF;
-  display: inline-block;
-}
-.m-modal .main .toolbar span:last-child {
-  background: #FF3858;
-}
-.m-modal .main .toolbar span:nth-last-child(2) {
-  background: #00A0E8;
 }
 /** 字体大小设置 **/
 /** 通用模块大小 **/

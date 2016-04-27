@@ -2,7 +2,7 @@
 
 import "./index.less";
 import React from "react";
-import BaseUtil from "../base/util";
+import BaseUtil from "../Base/util";
 
 export default class Form extends React.Component {
 	static defaultProps = {
@@ -28,7 +28,7 @@ export default class Form extends React.Component {
 			return (
 				<div className="item" key={pname}>
 					<label htmlFor={pname}>{pvalue.title || pvalue}</label>
-					<input type="text" value="" id={pname} placeholder={pvalue.hint || ""} />
+					<input type="text" defaultValue="" id={pname} placeholder={pvalue.hint || ""} />
 	 			</div>	
 			);
 		});
@@ -39,5 +39,4 @@ export default class Form extends React.Component {
 			</div>		
 		);
 	}
-
 }

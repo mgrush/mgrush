@@ -3,7 +3,7 @@
 import "./index.less";
 import React from "react";
 import ReactDom from "react-dom";
-import BaseUtil from "../base/util";
+import BaseUtil from "../Base/util";
 
 let Container = {
 	__refers : [],

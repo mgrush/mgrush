@@ -34,6 +34,11 @@ let BaseUtil = Object.assign({}, {
 		return Object.prototype.toString.call(target) === "[object Object]";
 	},
 
+	// 判断是否是方法
+	isFunc(target){
+		return Object.prototype.toString.call(target) === "[object Function]";
+	},
+
 	// 获取远程json数据
 	getJSON(url, params){
 		return new Promise((resolve, reject) => {

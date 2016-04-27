@@ -11,6 +11,8 @@
 	}
 }
 
+@rowHeight : 3.0rem;
+
 
 /** table数据样式设计 **/
 .m-datalist .table-content {
@@ -28,6 +30,25 @@
 		//}}}
 	}
 
+	.t-operation span {
+		color: @white;
+		cursor: pointer;
+		display: inline-block;
+
+		.borderRadius(@unit);
+		.padding(0, @unit * 3);
+		.margin(0, @unit * 2, 0, 0);
+		.height(@rowHeight * 0.7, @rowHeight * 0.7);
+		
+		&.edit {
+			.background(#00A0E8);
+		}
+
+		&.delete {
+			.background(#FF3858);
+		}
+	}
+
 	table {
 		//{{{ 表格样式
 		.width(100%);
@@ -35,15 +56,15 @@
 		td, th {
 			.border();
 			.background();
-			.padding(0, 1.0rem);
-			.height(3.0rem, 3.0rem);
+			.padding(0, @rowHeight / 3);
+			.height(@rowHeight, @rowHeight);
 
 			text-align: left;
 			cursor: pointer;
 		}
 
 		th {
-			.height(3.6rem, 3.6rem);
+			.height(@rowHeight * 1.2, @rowHeight * 1.2);
 		}
 
 		tbody tr:nth-child(2n) td {

@@ -8,13 +8,13 @@ webpackJsonp([3],{
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 
-	__webpack_require__(/*! ./index.less */ 200);
+	__webpack_require__(/*! ./index.less */ 198);
 
-	var _react = __webpack_require__(/*! react */ 4);
+	var _react = __webpack_require__(/*! react */ 5);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(/*! react-dom */ 15);
+	var _reactDom = __webpack_require__(/*! react-dom */ 18);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -46,7 +46,7 @@ webpackJsonp([3],{
 
 	"use strict";
 
-	__webpack_require__(/*! ./jquery.fullPage.css */ 190);
+	__webpack_require__(/*! ./jquery.fullPage.css */ 189);
 
 	module.exports = __webpack_require__(/*! ./jquery.fullPage.js */ 97);
 
@@ -608,7 +608,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 190:
+/***/ 189:
 /*!*************************************************!*\
   !*** ./components/fullpage/jquery.fullPage.css ***!
   \*************************************************/
@@ -618,7 +618,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 200:
+/***/ 198:
 /*!*******************************!*\
   !*** ./pages/home/index.less ***!
   \*******************************/
