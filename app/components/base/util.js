@@ -4,11 +4,24 @@ let BaseUtil = Object.assign({}, {
 	map(obj, callback){
 		let mapResult = [];
 
-		for(var pname in obj) {
+		for(var pname in obj){
 			mapResult.push(callback(pname, obj[pname]));
 		}
 
 		return mapResult;
+	},
+
+	// 克隆对象
+	clone(obj, filterFunc){
+		let newObj = {};
+
+		for(var pname in obj) {
+			if(filterFunc(pname, obj[pname])){
+				newObj[pname] = obj[pname];
+			}
+		}
+
+		return newObj;
 	},
 
 	// 判断是否是数组
