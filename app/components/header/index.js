@@ -2,7 +2,6 @@
 
 import "./index.less";
 import React from "react";
-import Logo from "../logo";
 import Menu from "../menu";
 import UserLogo from "../user-logo";
 
@@ -13,7 +12,7 @@ export default class Header extends React.Component {
 		return (
 			<div className="m-header" onClick={this.onClick}>
 				<div className="header-content">
-					<Logo />
+					<div className="m-logo"></div>	
 					<UserLogo/>
 					<Menu/>
 				</div>
