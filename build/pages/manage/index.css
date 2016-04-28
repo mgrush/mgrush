@@ -26,42 +26,6 @@ body {
 /** position定位方法 **/
 /** padding, margin 方法 **/
 /** overflow **/
-.m-header {
-  border-bottom: 0.1rem solid #e5e5e5;
-  height: 6rem;
-  line-height: 6rem;
-  background: rgba(255, 255, 255, 0.8);
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: auto;
-  left: 0;
-  z-index: initial;
-}
-.m-header .header-content {
-  margin: 0 auto 0 auto;
-  height: 6rem;
-  line-height: initial;
-  width: 114rem;
-}
-.m-header .m-logo {
-  margin: 1.4rem 0rem 1.4rem 0rem;
-}
-.m-header .m-dropdown,
-.m-header .m-menu {
-  float: right;
-}
-/** 字体大小设置 **/
-/** 通用模块大小 **/
-/** 最小数据单元 **/
-/** 通用颜色设置 **/
-/** float-left, float-right **/
-/** 背景设置 **/
-/** height, width **/
-/** border, border-radius等方法 **/
-/** position定位方法 **/
-/** padding, margin 方法 **/
-/** overflow **/
 /** 变量定义 **/
 .m-aside-menu {
   cursor: pointer;

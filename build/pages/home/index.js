@@ -18,17 +18,17 @@ webpackJsonp([3],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _header = __webpack_require__(/*! ../../components/header */ 58);
+	var _Header = __webpack_require__(/*! ../../components/Header */ 98);
 
-	var _header2 = _interopRequireDefault(_header);
+	var _Header2 = _interopRequireDefault(_Header);
 
-	var _fullpage = __webpack_require__(/*! ../../components/fullpage */ 104);
+	var _Fullpage = __webpack_require__(/*! ../../components/Fullpage */ 247);
 
-	var _fullpage2 = _interopRequireDefault(_fullpage);
+	var _Fullpage2 = _interopRequireDefault(_Fullpage);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_reactDom2.default.render(_react2.default.createElement(_header2.default, null), document.getElementById("header"));
+	_reactDom2.default.render(_react2.default.createElement(_Header2.default, null), document.getElementById("header"));
 
 	$("#fullpage").fullpage({
 		menu: "#menu",
@@ -38,23 +38,33 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 104:
+/***/ 201:
+/*!*******************************!*\
+  !*** ./pages/home/index.less ***!
+  \*******************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ 247:
 /*!**************************************!*\
-  !*** ./components/fullpage/index.js ***!
+  !*** ./components/Fullpage/index.js ***!
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	__webpack_require__(/*! ./jquery.fullPage.css */ 193);
+	__webpack_require__(/*! ./jquery.fullPage.css */ 249);
 
-	module.exports = __webpack_require__(/*! ./jquery.fullPage.js */ 105);
+	module.exports = __webpack_require__(/*! ./jquery.fullPage.js */ 248);
 
 /***/ },
 
-/***/ 105:
+/***/ 248:
 /*!************************************************!*\
-  !*** ./components/fullpage/jquery.fullPage.js ***!
+  !*** ./components/Fullpage/jquery.fullPage.js ***!
   \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -608,20 +618,10 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 193:
+/***/ 249:
 /*!*************************************************!*\
-  !*** ./components/fullpage/jquery.fullPage.css ***!
+  !*** ./components/Fullpage/jquery.fullPage.css ***!
   \*************************************************/
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ 201:
-/*!*******************************!*\
-  !*** ./pages/home/index.less ***!
-  \*******************************/
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

@@ -1,9 +1,9 @@
 import "./index.less";
 import React from "react";
 import ReactDOM from "react-dom";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import Guide from "../../components/guide";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Guide from "../../components/Guide";
 
 ReactDOM.render(
 	<Header />,

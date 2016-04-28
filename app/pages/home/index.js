@@ -1,8 +1,8 @@
 import "./index.less";
 import React from "react";
 import ReactDOM from "react-dom";
-import Header from "../../components/header";
-import FullPage from "../../components/fullpage";
+import Header from "../../components/Header";
+import FullPage from "../../components/Fullpage";
 
 ReactDOM.render(
 	<Header />,

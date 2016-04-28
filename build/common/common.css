@@ -29,27 +29,15 @@
 }
 .m-header .m-logo {
   margin: 1.4rem 0rem 1.4rem 0rem;
+  display: inline-block;
+  width: 17.5rem;
+  height: 3.2rem;
+  line-height: initial;
+  background: url(//wacai-file.b0.upaiyun.com/common/c/header/img/logo@2x.png) 0 0 / cover no-repeat;
 }
 .m-header .m-dropdown,
 .m-header .m-menu {
   float: right;
-}
-/** 字体大小设置 **/
-/** 通用模块大小 **/
-/** 最小数据单元 **/
-/** 通用颜色设置 **/
-/** float-left, float-right **/
-/** 背景设置 **/
-/** height, width **/
-/** border, border-radius等方法 **/
-/** position定位方法 **/
-/** padding, margin 方法 **/
-/** overflow **/
-.m-logo {
-  display: inline-block;
-  width: 17.5rem;
-  height: 3.2rem;
-  background: url(//wacai-file.b0.upaiyun.com/common/c/header/img/logo@2x.png) 0 0 / cover no-repeat;
 }
 /** 字体大小设置 **/
 /** 通用模块大小 **/
