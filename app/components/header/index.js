@@ -2,7 +2,7 @@
 
 import "./index.less";
 import React from "react";
-import Menu from "../menu";
+import Menu from "../Menu";
 import UserLogo from "../user-logo";
 
 export default class Header extends React.Component {
