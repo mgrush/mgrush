@@ -6,6 +6,8 @@
 @itemHeight : 4rem;
 
 .m-aside-menu {
+	cursor: pointer;
+
 	.border(right);
 	.width(@menuWidth);
 	.background(@white);
@@ -14,8 +16,21 @@
 
 	.group-name {
 		.border(bottom);
-		.padding(0, @unit * 5);
+		.padding(0, @unit * 3, 0, @unit * 5);
 		.height(@titleHeight, @titleHeight);
+
+		text-align: right;
+
+		span {
+			.float(left);
+		}
+	}
+
+	.group-items {
+		.position(relative);
+
+		overflow: hidden;
+		transition: height .2s linear;
 	}
 
 	.item {

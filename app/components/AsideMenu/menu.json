@@ -1,0 +1,52 @@
+{
+	"我的工作" : [{
+		"title" : "我的数据表格",
+		"pageUrl" : "/manage"
+	}, {
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}, {
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}],
+	"我的工作1" : [{
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}, {
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}, {
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}],
+	"我的工作2" : [{
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}, {
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}, {
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}],
+	"我的工作3" : [{
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}, {
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}, {
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}],
+	"我的工作4" : [{
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}, {
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}, {
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}]
+}

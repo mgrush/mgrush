@@ -6,52 +6,65 @@ import ReactDOM from "react-dom";
 
 import Header from "../../components/Header";
 import AsideMenu from "../../components/AsideMenu";
-import Table from "../../components/Table";
 
+import DataList from "./data-list";
+
+// 自动创建react组件容器
+function createContainer(uniqueId){
+	let container = document.createElement("div");
+	container.id = uniqueId;
+	container.className = "content";
+
+	document.body.appendChild( container );
+
+	return container;
+}
+
+// 页面导航条设置
 ReactDOM.render(
 	<Header />,
 	document.getElementById("header")
 );
 
-ReactDOM.render(
-	<AsideMenu />,
-	document.getElementById("aside")
-);
-
-// 渲染数据表格
-let tableProps = {
-	title : "数据表格标题",
-	columns : {
-		id : {
-			title : "序号",
-			editable : false
-		},
-		username : "姓名",
-		age : "年龄",
-		gender : {
-			title : "性别",
-			map : {
-				0 : "女",
-				1 : "男"
-			},
-			hint : "请选择性别"
-		},
-		_operation : {
-			title : "操作",
-			render : () => {
-				return (
-					<div className="t-operation">
-						<span className="edit">编辑</span>
-						<span className="delete">删除</span>
-					</div>		
+// 左侧导航配置
+const MenuConfig = [{
+	title : "我的工作",
+	items : [{
+		title : "我的数据表格",
+		onClick : function(uniqueId){
+			let content = document.getElementById(uniqueId);
+			if( !content ) {
+				ReactDOM.render(
+					<DataList />,
+					createContainer(uniqueId)
 				);
+			}else {
+				console.log("显示 content");
 			}
 		}
-	},
-	data : "/user/getUserList"
-};
+	}, {
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}, {
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}]
+}, {
+	title : "我的工作1",
+	items : [{
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}, {
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}, {
+		"title" : "我的申请单列表",
+		"pageUrl" : "http://a.b.com"
+	}]
+}];
 
+// 渲染左侧导航条
 ReactDOM.render(
-	<Table {...tableProps} />,
-	document.getElementById("m-content")
+	<AsideMenu menuConfig={MenuConfig}/>,
+	document.getElementById("aside")
 );

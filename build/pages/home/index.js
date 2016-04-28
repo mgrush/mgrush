@@ -8,9 +8,9 @@ webpackJsonp([3],{
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 
-	__webpack_require__(/*! ./index.less */ 198);
+	__webpack_require__(/*! ./index.less */ 201);
 
-	var _react = __webpack_require__(/*! react */ 5);
+	var _react = __webpack_require__(/*! react */ 4);
 
 	var _react2 = _interopRequireDefault(_react);
 
@@ -18,11 +18,11 @@ webpackJsonp([3],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _header = __webpack_require__(/*! ../../components/header */ 36);
+	var _header = __webpack_require__(/*! ../../components/header */ 58);
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _fullpage = __webpack_require__(/*! ../../components/fullpage */ 96);
+	var _fullpage = __webpack_require__(/*! ../../components/fullpage */ 104);
 
 	var _fullpage2 = _interopRequireDefault(_fullpage);
 
@@ -34,11 +34,11 @@ webpackJsonp([3],{
 		menu: "#menu",
 		anchors: ["firstPage", "secondPage", "thirdPage"]
 		});
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 26)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 20)))
 
 /***/ },
 
-/***/ 96:
+/***/ 104:
 /*!**************************************!*\
   !*** ./components/fullpage/index.js ***!
   \**************************************/
@@ -46,13 +46,13 @@ webpackJsonp([3],{
 
 	"use strict";
 
-	__webpack_require__(/*! ./jquery.fullPage.css */ 189);
+	__webpack_require__(/*! ./jquery.fullPage.css */ 193);
 
-	module.exports = __webpack_require__(/*! ./jquery.fullPage.js */ 97);
+	module.exports = __webpack_require__(/*! ./jquery.fullPage.js */ 105);
 
 /***/ },
 
-/***/ 97:
+/***/ 105:
 /*!************************************************!*\
   !*** ./components/fullpage/jquery.fullPage.js ***!
   \************************************************/
@@ -64,7 +64,7 @@ webpackJsonp([3],{
 	 * @license MIT licensed
 	 *
 	 * Copyright (C) 2015 alvarotrigo.com - A project by Alvaro Trigo
-	 */(function(global,factory){'use strict';if(true){!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ 26)], __WEBPACK_AMD_DEFINE_RESULT__ = function($){return factory($,global,global.document,global.Math);}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));}else if(typeof exports!=='undefined'){module.exports=factory(require('jquery'),global,global.document,global.Math);}else {factory(jQuery,global,global.document,global.Math);}})(typeof window!=='undefined'?window:undefined,function($,window,document,Math,undefined){'use strict'; // keeping central set of classnames and selectors
+	 */(function(global,factory){'use strict';if(true){!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ 20)], __WEBPACK_AMD_DEFINE_RESULT__ = function($){return factory($,global,global.document,global.Math);}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));}else if(typeof exports!=='undefined'){module.exports=factory(require('jquery'),global,global.document,global.Math);}else {factory(jQuery,global,global.document,global.Math);}})(typeof window!=='undefined'?window:undefined,function($,window,document,Math,undefined){'use strict'; // keeping central set of classnames and selectors
 	var WRAPPER='fullpage-wrapper';var WRAPPER_SEL='.'+WRAPPER; // slimscroll
 	var SCROLLABLE='fp-scrollable';var SCROLLABLE_SEL='.'+SCROLLABLE;var SLIMSCROLL_BAR_SEL='.slimScrollBar';var SLIMSCROLL_RAIL_SEL='.slimScrollRail'; // util
 	var RESPONSIVE='fp-responsive';var NO_TRANSITION='fp-notransition';var DESTROYED='fp-destroyed';var ENABLED='fp-enabled';var VIEWING_PREFIX='fp-viewing';var ACTIVE='active';var ACTIVE_SEL='.'+ACTIVE;var COMPLETELY='fp-completely';var COMPLETELY_SEL='.'+COMPLETELY; // section
@@ -608,7 +608,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 189:
+/***/ 193:
 /*!*************************************************!*\
   !*** ./components/fullpage/jquery.fullPage.css ***!
   \*************************************************/
@@ -618,7 +618,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 198:
+/***/ 201:
 /*!*******************************!*\
   !*** ./pages/home/index.less ***!
   \*******************************/

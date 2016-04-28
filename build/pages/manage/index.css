@@ -64,6 +64,7 @@ body {
 /** overflow **/
 /** 变量定义 **/
 .m-aside-menu {
+  cursor: pointer;
   border-right: 0.1rem solid #e5e5e5;
   width: 18rem;
   background: #fff;
@@ -78,9 +79,24 @@ body {
 }
 .m-aside-menu .group-name {
   border-bottom: 0.1rem solid #e5e5e5;
-  padding: 0 2rem 0 2rem;
+  padding: 0 1.2rem 0 2rem;
   height: 4.4rem;
   line-height: 4.4rem;
+  text-align: right;
+}
+.m-aside-menu .group-name span {
+  float: left;
+}
+.m-aside-menu .group-items {
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  z-index: initial;
+  overflow: hidden;
+  -webkit-transition: height .2s linear;
+  transition: height .2s linear;
 }
 .m-aside-menu .item {
   border-bottom: 0.1rem solid #e5e5e5;

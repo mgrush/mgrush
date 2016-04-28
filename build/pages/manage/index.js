@@ -8,9 +8,9 @@ webpackJsonp([1],{
 
 	"use strict";
 
-	__webpack_require__(/*! ./index.less */ 199);
+	__webpack_require__(/*! ./index.less */ 202);
 
-	var _react = __webpack_require__(/*! react */ 5);
+	var _react = __webpack_require__(/*! react */ 4);
 
 	var _react2 = _interopRequireDefault(_react);
 
@@ -18,70 +18,184 @@ webpackJsonp([1],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _Header = __webpack_require__(/*! ../../components/Header */ 241);
+	var _Header = __webpack_require__(/*! ../../components/Header */ 98);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _AsideMenu = __webpack_require__(/*! ../../components/AsideMenu */ 237);
+	var _AsideMenu = __webpack_require__(/*! ../../components/AsideMenu */ 96);
 
 	var _AsideMenu2 = _interopRequireDefault(_AsideMenu);
 
-	var _Table = __webpack_require__(/*! ../../components/Table */ 243);
+	var _dataList = __webpack_require__(/*! ./data-list */ 240);
 
-	var _Table2 = _interopRequireDefault(_Table);
+	var _dataList2 = _interopRequireDefault(_dataList);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// 自动创建react组件容器
+	function createContainer(uniqueId) {
+		var container = document.createElement("div");
+		container.id = uniqueId;
+		container.className = "content";
+
+		document.body.appendChild(container);
+
+		return container;
+	}
+
+	// 页面导航条设置
 	_reactDom2.default.render(_react2.default.createElement(_Header2.default, null), document.getElementById("header"));
 
-	_reactDom2.default.render(_react2.default.createElement(_AsideMenu2.default, null), document.getElementById("aside"));
-
-	// 渲染数据表格
-	var tableProps = {
-		title: "数据表格标题",
-		columns: {
-			id: {
-				title: "序号",
-				editable: false
-			},
-			username: "姓名",
-			age: "年龄",
-			gender: {
-				title: "性别",
-				map: {
-					0: "女",
-					1: "男"
-				},
-				hint: "请选择性别"
-			},
-			_operation: {
-				title: "操作",
-				render: function render() {
-					return _react2.default.createElement(
-						"div",
-						{ className: "t-operation" },
-						_react2.default.createElement(
-							"span",
-							{ className: "edit" },
-							"编辑"
-						),
-						_react2.default.createElement(
-							"span",
-							{ className: "delete" },
-							"删除"
-						)
-					);
+	// 左侧导航配置
+	var MenuConfig = [{
+		title: "我的工作",
+		items: [{
+			title: "我的数据表格",
+			onClick: function onClick(uniqueId) {
+				var content = document.getElementById(uniqueId);
+				if (!content) {
+					_reactDom2.default.render(_react2.default.createElement(_dataList2.default, null), createContainer(uniqueId));
+				} else {
+					console.log("显示 content");
 				}
 			}
-		},
-		data: "/user/getUserList"
-	};
+		}, {
+			"title": "我的申请单列表",
+			"pageUrl": "http://a.b.com"
+		}, {
+			"title": "我的申请单列表",
+			"pageUrl": "http://a.b.com"
+		}]
+	}, {
+		title: "我的工作1",
+		items: [{
+			"title": "我的申请单列表",
+			"pageUrl": "http://a.b.com"
+		}, {
+			"title": "我的申请单列表",
+			"pageUrl": "http://a.b.com"
+		}, {
+			"title": "我的申请单列表",
+			"pageUrl": "http://a.b.com"
+		}]
+	}];
 
-		_reactDom2.default.render(_react2.default.createElement(_Table2.default, tableProps), document.getElementById("m-content"));
+	// 渲染左侧导航条
+		_reactDom2.default.render(_react2.default.createElement(_AsideMenu2.default, { menuConfig: MenuConfig }), document.getElementById("aside"));
 
 /***/ },
 
-/***/ 25:
+/***/ 35:
+/*!***************************************!*\
+  !*** ./components/Table/constants.js ***!
+  \***************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// 定义组件通用常量
+	var Constants = {
+
+		// change事件名称
+		CHANGE_EVENT: Symbol(),
+
+		// 创建数据
+		ADD_ITEM: Symbol(),
+
+		// 删除数据
+		DEL_ITEM: Symbol(),
+
+		// 更新数据
+		UPDATE_ITEM: Symbol(),
+
+		// 本地缓存数据
+		CLIENT_DATA: Symbol(),
+
+		// 远程数据
+		REMOTE_DATA: Symbol()
+	};
+
+		exports.default = Constants;
+
+/***/ },
+
+/***/ 55:
+/*!*********************************!*\
+  !*** ./components/Base/util.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// 基本方法定义
+	var BaseUtil = Object.assign({}, {
+		// 仿照Array.map方法对obj进行处理并返回数组
+
+		map: function map(obj, callback) {
+			var mapResult = [];
+
+			for (var pname in obj) {
+				mapResult.push(callback(pname, obj[pname]));
+			}
+
+			return mapResult;
+		},
+
+
+		// 克隆对象
+		clone: function clone(obj, filterFunc) {
+			var newObj = {};
+
+			for (var pname in obj) {
+				if (filterFunc(pname, obj[pname])) {
+					newObj[pname] = obj[pname];
+				}
+			}
+
+			return newObj;
+		},
+
+
+		// 判断是否是数组
+		isArray: function isArray(target) {
+			return Object.prototype.toString.call(target) === "[object Array]";
+		},
+
+
+		// 判断是否是对象
+		isObject: function isObject(target) {
+			return Object.prototype.toString.call(target) === "[object Object]";
+		},
+
+
+		// 判断是否是方法
+		isFunc: function isFunc(target) {
+			return Object.prototype.toString.call(target) === "[object Function]";
+		},
+
+
+		// 获取远程json数据
+		getJSON: function getJSON(url, params) {
+			return new Promise(function (resolve, reject) {
+				$.getJSON(url, params, function (result) {
+					resolve(result);
+				});
+			});
+		}
+	});
+
+		exports.default = BaseUtil;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 20)))
+
+/***/ },
+
+/***/ 56:
 /*!*********************************!*\
   !*** ./components/base/util.js ***!
   \*********************************/
@@ -150,7 +264,7 @@ webpackJsonp([1],{
 	});
 
 		exports.default = BaseUtil;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 26)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 20)))
 
 /***/ },
 
@@ -166,7 +280,7 @@ webpackJsonp([1],{
 	  value: true
 	});
 
-	var _flux = __webpack_require__(/*! flux */ 110);
+	var _flux = __webpack_require__(/*! flux */ 112);
 
 	var AppDispatcher = new _flux.Dispatcher();
 
@@ -174,7 +288,307 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 92:
+/***/ 96:
+/*!***************************************!*\
+  !*** ./components/AsideMenu/index.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	__webpack_require__(/*! ./index.less */ 187);
+
+	var _react = __webpack_require__(/*! react */ 4);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _util = __webpack_require__(/*! ../Base/util */ 55);
+
+	var _util2 = _interopRequireDefault(_util);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var itemHeight = 4; // rem
+
+	var AsideMenu = function (_React$Component) {
+		_inherits(AsideMenu, _React$Component);
+
+		function AsideMenu(props) {
+			_classCallCheck(this, AsideMenu);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(AsideMenu).call(this, props));
+		}
+
+		_createClass(AsideMenu, [{
+			key: "render",
+			value: function render() {
+				var _this2 = this;
+
+				var menuList = this.props.menuConfig.map(function (group, index) {
+					var styleMap = {
+						height: group.items.length * itemHeight + "rem"
+					};
+
+					var itemList = group.items.map(function (item, index) {
+						return _react2.default.createElement(
+							"div",
+							{ className: "item", key: index, onClick: _this2.onItemClick.bind(_this2, item, new Date().getTime()) },
+							item.title
+						);
+					});
+
+					return _react2.default.createElement(
+						"div",
+						{ className: "group", key: index },
+						_react2.default.createElement(
+							"div",
+							{ className: "group-name", onClick: _this2.toggleMenu.bind(_this2) },
+							_react2.default.createElement(
+								"span",
+								null,
+								group.title
+							),
+							_react2.default.createElement("i", { className: "icon-angle-up" })
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "group-items", "data-length": group.items.length, style: styleMap },
+							itemList
+						)
+					);
+				});
+
+				return _react2.default.createElement(
+					"div",
+					{ className: "m-aside-menu" },
+					menuList
+				);
+			}
+		}, {
+			key: "toggleMenu",
+			value: function toggleMenu(event) {
+				var target = event.target.className.includes("group-name") ? event.target : event.target.parentNode;
+				var groupItems = target.nextSibling;
+				var itemCount = groupItems.getAttribute("data-length");
+				var className = target.lastChild.getAttribute("class");
+
+				if (className.includes("icon-angle-up")) {
+					target.nextSibling.style.height = "0rem";
+					target.lastChild.className = "icon-angle-down";
+				} else {
+					target.nextSibling.style.height = itemCount * itemHeight + "rem";
+					target.lastChild.className = "icon-angle-up";
+				}
+			}
+		}, {
+			key: "onItemClick",
+			value: function onItemClick(item, uniqueId) {
+				item.onClick && item.onClick(uniqueId);
+			}
+		}]);
+
+		return AsideMenu;
+	}(_react2.default.Component);
+
+	AsideMenu.defaultProps = {
+		menuConfig: []
+	};
+		exports.default = AsideMenu;
+
+/***/ },
+
+/***/ 97:
+/*!**********************************!*\
+  !*** ./components/Form/index.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	__webpack_require__(/*! ./index.less */ 188);
+
+	var _react = __webpack_require__(/*! react */ 4);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _util = __webpack_require__(/*! ../Base/util */ 55);
+
+	var _util2 = _interopRequireDefault(_util);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Form = function (_React$Component) {
+		_inherits(Form, _React$Component);
+
+		function Form(props) {
+			_classCallCheck(this, Form);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Form).call(this, props));
+		}
+
+		// 通过表单ID获取表单的数据
+
+
+		_createClass(Form, [{
+			key: "render",
+			value: function render() {
+				var itemList = _util2.default.map(this.props.columns, function (pname, pvalue) {
+					return _react2.default.createElement(
+						"div",
+						{ className: "item", key: pname },
+						_react2.default.createElement(
+							"label",
+							{ htmlFor: pname },
+							pvalue.title || pvalue
+						),
+						_react2.default.createElement("input", { type: "text", defaultValue: "", id: pname, placeholder: pvalue.hint || "" })
+					);
+				});
+
+				return _react2.default.createElement(
+					"div",
+					{ className: "m-form", id: this.props.formId },
+					itemList
+				);
+			}
+		}], [{
+			key: "getFormData",
+			value: function getFormData() {
+				var formId = arguments.length <= 0 || arguments[0] === undefined ? "default-form" : arguments[0];
+				var formData = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+				var $content = arguments.length <= 2 || arguments[2] === undefined ? $("#" + formId) : arguments[2];
+
+				$content.find("input, select, textarea").each(function (index, item) {
+					formData[$(item).attr("name") || $(item).attr("id")] = $(item).val();
+				});
+
+				return formData;
+			}
+		}]);
+
+		return Form;
+	}(_react2.default.Component);
+
+	Form.defaultProps = {
+		formId: "default-form",
+		columns: {}
+	};
+		exports.default = Form;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 20)))
+
+/***/ },
+
+/***/ 98:
+/*!************************************!*\
+  !*** ./components/Header/index.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	__webpack_require__(/*! ./index.less */ 189);
+
+	var _react = __webpack_require__(/*! react */ 4);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _logo = __webpack_require__(/*! ../logo */ 59);
+
+	var _logo2 = _interopRequireDefault(_logo);
+
+	var _menu = __webpack_require__(/*! ../menu */ 60);
+
+	var _menu2 = _interopRequireDefault(_menu);
+
+	var _userLogo = __webpack_require__(/*! ../user-logo */ 61);
+
+	var _userLogo2 = _interopRequireDefault(_userLogo);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Header = function (_React$Component) {
+		_inherits(Header, _React$Component);
+
+		function Header() {
+			var _Object$getPrototypeO;
+
+			var _temp, _this, _ret;
+
+			_classCallCheck(this, Header);
+
+			for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+				args[_key] = arguments[_key];
+			}
+
+			return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Header)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {}, _temp), _possibleConstructorReturn(_this, _ret);
+		}
+
+		_createClass(Header, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "m-header", onClick: this.onClick },
+					_react2.default.createElement(
+						"div",
+						{ className: "header-content" },
+						_react2.default.createElement(_logo2.default, null),
+						_react2.default.createElement(_userLogo2.default, null),
+						_react2.default.createElement(_menu2.default, null)
+					)
+				);
+			}
+		}, {
+			key: "onClick",
+			value: function onClick(evt) {
+				alert("Clicked!");
+			}
+		}]);
+
+		return Header;
+	}(_react2.default.Component);
+
+		exports.default = Header;
+
+/***/ },
+
+/***/ 99:
 /*!***********************************!*\
   !*** ./components/Layer/index.js ***!
   \***********************************/
@@ -188,9 +602,9 @@ webpackJsonp([1],{
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	__webpack_require__(/*! ./index.less */ 185);
+	__webpack_require__(/*! ./index.less */ 190);
 
-	var _react = __webpack_require__(/*! react */ 5);
+	var _react = __webpack_require__(/*! react */ 4);
 
 	var _react2 = _interopRequireDefault(_react);
 
@@ -198,7 +612,7 @@ webpackJsonp([1],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _util = __webpack_require__(/*! ../Base/util */ 264);
+	var _util = __webpack_require__(/*! ../Base/util */ 55);
 
 	var _util2 = _interopRequireDefault(_util);
 
@@ -354,7 +768,401 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 108:
+/***/ 100:
+/*!*************************************!*\
+  !*** ./components/Table/actions.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _constants = __webpack_require__(/*! ./constants */ 35);
+
+	var _constants2 = _interopRequireDefault(_constants);
+
+	var _dispatcher = __webpack_require__(/*! ../dispatcher */ 57);
+
+	var _dispatcher2 = _interopRequireDefault(_dispatcher);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+		create: function create(data) {
+			_dispatcher2.default.dispatch({
+				actionType: _constants2.default.ADD_ITEM,
+				data: data
+			});
+		}
+		};
+
+/***/ },
+
+/***/ 101:
+/*!***********************************!*\
+  !*** ./components/Table/index.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	__webpack_require__(/*! ./index.less */ 191);
+
+	var _react = __webpack_require__(/*! react */ 4);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(/*! react-dom */ 18);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _actions = __webpack_require__(/*! ./actions */ 100);
+
+	var _actions2 = _interopRequireDefault(_actions);
+
+	var _store = __webpack_require__(/*! ./store */ 102);
+
+	var _store2 = _interopRequireDefault(_store);
+
+	var _constants = __webpack_require__(/*! ./constants */ 35);
+
+	var _constants2 = _interopRequireDefault(_constants);
+
+	var _util = __webpack_require__(/*! ../base/util */ 56);
+
+	var _util2 = _interopRequireDefault(_util);
+
+	var _Form = __webpack_require__(/*! ../Form */ 97);
+
+	var _Form2 = _interopRequireDefault(_Form);
+
+	var _Layer = __webpack_require__(/*! ../Layer */ 99);
+
+	var _Layer2 = _interopRequireDefault(_Layer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Table = function (_React$Component) {
+		_inherits(Table, _React$Component);
+
+		// 需要显示的数据列表
+
+		function Table(props) {
+			_classCallCheck(this, Table);
+
+			// 判断数据来源是本地数据（CLIENT_DATA）还是服务端数据（REMOTE_DATA）
+
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Table).call(this, props));
+
+			_this.dataType = _util2.default.isArray(props.data) ? _constants2.default.CLIENT_DATA : _constants2.default.REMOTE_DATA;
+
+			_this.state = {
+				count: 0,
+				page: props.page || 0,
+				size: props.size || 15,
+				title: props.title || "",
+				columns: props.columns || {}
+			};
+
+			// 获取数据列表
+			_this.getDataSource();
+
+			// 监听数据变化
+			_store2.default.addChangeListener(_this.onChange.bind(_this));
+			return _this;
+		}
+
+		// 获取指定分页的数据
+
+
+		_createClass(Table, [{
+			key: "getDataSource",
+			value: function getDataSource(page) {
+				var _this2 = this;
+
+				var dataSource = this.props.data;
+				var queryParams = Object.assign({
+					size: this.state.size,
+					page: page || this.state.page
+				}, this.props.params);
+
+				_store2.default.getData(dataSource, queryParams).then(function (result) {
+					_this2.setState(Object.assign(_this2.state, {
+						data: result.data,
+						count: result.count
+					}));
+				});
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				var _this3 = this;
+
+				// 表格标题
+				var dataThs = _util2.default.map(this.state.columns, function (pname, pvalue) {
+					return _react2.default.createElement(
+						"th",
+						{ "data-key": pname, key: pname },
+						_util2.default.isObject(pvalue) ? pvalue.title : pvalue
+					);
+				});
+
+				// 表格数据列表
+				var dataRows = this.state.data && this.state.data.length ? this.state.data.map(function (item, index) {
+					var columns = _util2.default.map(_this3.state.columns, function (pname, column) {
+						var isObj = _util2.default.isObject(column);
+						var hasMap = isObj && _util2.default.isObject(column.map);
+						var hasRender = isObj && _util2.default.isFunc(column.render);
+						var pvalue = hasMap ? column.map[item[pname]] : item[pname];
+
+						return _react2.default.createElement(
+							"td",
+							{ "data-key": pname, key: pname },
+							hasRender ? column.render(pvalue) : pvalue
+						);
+					});
+
+					return _react2.default.createElement(
+						"tr",
+						{ key: index, "data-id": item.id },
+						columns
+					);
+				}) : _react2.default.createElement(
+					"tr",
+					null,
+					_react2.default.createElement(
+						"td",
+						{ colSpan: 10000 },
+						"暂无数据！"
+					)
+				);
+
+				// 分页
+				var pageCount = Math.ceil(this.state.count / this.state.size);
+				var pageNav = new Array(pageCount).fill(0).map(function (item, index) {
+					return _react2.default.createElement(
+						"li",
+						{ key: index, onClick: _this3.onPageItemClick.bind(_this3), "data-value": index, className: index == _this3.state.page ? "selected" : "" },
+						index + 1
+					);
+				});
+
+				return _react2.default.createElement(
+					"div",
+					{ className: "m-datalist" },
+					_react2.default.createElement(
+						"div",
+						{ className: "search-content" },
+						_react2.default.createElement(
+							"div",
+							{ className: "button", onClick: this.showAppendModal.bind(this) },
+							"添加记录"
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "table-content" },
+						_react2.default.createElement(
+							"div",
+							{ className: "t-title" },
+							this.state.title
+						),
+						_react2.default.createElement(
+							"table",
+							{ className: "" },
+							_react2.default.createElement(
+								"thead",
+								null,
+								_react2.default.createElement(
+									"tr",
+									null,
+									dataThs
+								)
+							),
+							_react2.default.createElement(
+								"tbody",
+								null,
+								dataRows
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "t-footer" },
+							_react2.default.createElement(
+								"ul",
+								null,
+								pageNav
+							)
+						)
+					)
+				);
+			}
+		}, {
+			key: "showAppendModal",
+			value: function showAppendModal(event) {
+				var columns = _util2.default.clone(this.state.columns, function (pname, item) {
+					return !_util2.default.isObject(item) || item.editable !== false;
+				});
+
+				var props = {
+					title: "这里是标题",
+					content: _react2.default.createElement(_Form2.default, { columns: columns }),
+					actions: [{
+						name: "确定",
+						className: "confirm",
+						action: function action() {
+							var formData = _Form2.default.getFormData();
+
+							console.log(formData);
+						}
+					}, {
+						name: "取消",
+						className: "cancel",
+						action: function action() {}
+					}]
+				};
+
+				_Layer2.default.modal(props);
+
+				/*
+	   ReactDom.render(
+	   	<Modal {...modalConfig} />,
+	   	document.getElementById("container")
+	   );
+	   */
+
+				/**
+	   TableActions.create({
+	   	id : 26,
+	   	name : "miracle",
+	   	age : "18",
+	   	gender : "female"
+	   });
+	   **/
+			}
+		}, {
+			key: "onChange",
+			value: function onChange() {
+				this.setState({
+					page: 0,
+					size: 15,
+					data: _store2.default.getData()
+				});
+			}
+		}, {
+			key: "onPageItemClick",
+			value: function onPageItemClick(event) {
+				var page = event.target.getAttribute("data-value");
+
+				if (this.dataType === _constants2.default.CLIENT_DATA) {} else {
+					this.getDataSource(page);
+				}
+			}
+		}]);
+
+		return Table;
+	}(_react2.default.Component);
+
+	Table.defaultProps = {
+		count: 0, // 记录总数
+		page: 0, // 当前的page页码
+		size: 15, // 每一页显示的数据的多少
+		title: "", // 表格的标题
+		columns: {}, // 列设置
+		data: [] };
+		exports.default = Table;
+
+/***/ },
+
+/***/ 102:
+/*!***********************************!*\
+  !*** ./components/Table/store.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _events = __webpack_require__(/*! events */ 110);
+
+	var _constants = __webpack_require__(/*! ./constants */ 35);
+
+	var _constants2 = _interopRequireDefault(_constants);
+
+	var _util = __webpack_require__(/*! ../base/util */ 56);
+
+	var _util2 = _interopRequireDefault(_util);
+
+	var _dispatcher = __webpack_require__(/*! ../dispatcher */ 57);
+
+	var _dispatcher2 = _interopRequireDefault(_dispatcher);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var TableStore = Object.assign({}, _events.EventEmitter.prototype, {
+		getData: function getData(dataSource, params) {
+			return new Promise(function (resolve, reject) {
+				// 缓存数据
+				if (_util2.default.isArray(dataSource)) {
+					return resolve({
+						data: dataSource,
+						count: dataSource.length
+					});
+				}
+
+				// 服务端异步数据
+				_util2.default.getJSON(dataSource, params).then(function (result) {
+					if (result.status == 0) {
+						resolve(result);
+					} else {
+						reject(result.msg);
+					}
+				});
+			});
+		},
+		create: function create(itemData) {},
+		emitChange: function emitChange() {
+			this.emit(_constants2.default.CHANGE_EVENT);
+		},
+		addChangeListener: function addChangeListener(callback) {
+			this.on(_constants2.default.CHANGE_EVENT, callback);
+		},
+		removeChangeListener: function removeChangeListener(callback) {
+			this.removeListener(_constants2.default.CHANGE_EVENT, callback);
+		}
+	});
+
+	_dispatcher2.default.register(function (action) {
+		switch (action.actionType) {
+			case _constants2.default.ADD_ITEM:
+				TableStore.create(action.data);
+				TableStore.emitChange();
+		}
+	});
+
+	exports.default = TableStore;
+
+/***/ },
+
+/***/ 110:
 /*!*****************************!*\
   !*** ../~/events/events.js ***!
   \*****************************/
@@ -632,7 +1440,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 109:
+/***/ 111:
 /*!**********************************!*\
   !*** ../~/fbjs/lib/invariant.js ***!
   \**********************************/
@@ -690,7 +1498,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 110:
+/***/ 112:
 /*!**************************!*\
   !*** ../~/flux/index.js ***!
   \**************************/
@@ -707,11 +1515,11 @@ webpackJsonp([1],{
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 
-		module.exports.Dispatcher = __webpack_require__(/*! ./lib/Dispatcher */ 111);
+		module.exports.Dispatcher = __webpack_require__(/*! ./lib/Dispatcher */ 113);
 
 /***/ },
 
-/***/ 111:
+/***/ 113:
 /*!***********************************!*\
   !*** ../~/flux/lib/Dispatcher.js ***!
   \***********************************/
@@ -740,7 +1548,7 @@ webpackJsonp([1],{
 	  }
 	}
 
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 109);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 111);
 
 	var _prefix = 'ID_';
 
@@ -955,244 +1763,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 185:
-/*!*************************************!*\
-  !*** ./components/Layer/index.less ***!
-  \*************************************/
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ 199:
-/*!*********************************!*\
-  !*** ./pages/manage/index.less ***!
-  \*********************************/
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ 234:
-/*!**********************************!*\
-  !*** ./components/Form/index.js ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	__webpack_require__(/*! ./index.less */ 235);
-
-	var _react = __webpack_require__(/*! react */ 5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _util = __webpack_require__(/*! ../Base/util */ 264);
-
-	var _util2 = _interopRequireDefault(_util);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Form = function (_React$Component) {
-		_inherits(Form, _React$Component);
-
-		function Form(props) {
-			_classCallCheck(this, Form);
-
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(Form).call(this, props));
-		}
-
-		// 通过表单ID获取表单的数据
-
-
-		_createClass(Form, [{
-			key: "render",
-			value: function render() {
-				var itemList = _util2.default.map(this.props.columns, function (pname, pvalue) {
-					return _react2.default.createElement(
-						"div",
-						{ className: "item", key: pname },
-						_react2.default.createElement(
-							"label",
-							{ htmlFor: pname },
-							pvalue.title || pvalue
-						),
-						_react2.default.createElement("input", { type: "text", defaultValue: "", id: pname, placeholder: pvalue.hint || "" })
-					);
-				});
-
-				return _react2.default.createElement(
-					"div",
-					{ className: "m-form", id: this.props.formId },
-					itemList
-				);
-			}
-		}], [{
-			key: "getFormData",
-			value: function getFormData() {
-				var formId = arguments.length <= 0 || arguments[0] === undefined ? "default-form" : arguments[0];
-				var formData = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-				var $content = arguments.length <= 2 || arguments[2] === undefined ? $("#" + formId) : arguments[2];
-
-				$content.find("input, select, textarea").each(function (index, item) {
-					formData[$(item).attr("name") || $(item).attr("id")] = $(item).val();
-				});
-
-				return formData;
-			}
-		}]);
-
-		return Form;
-	}(_react2.default.Component);
-
-	Form.defaultProps = {
-		formId: "default-form",
-		columns: {}
-	};
-		exports.default = Form;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 26)))
-
-/***/ },
-
-/***/ 235:
-/*!************************************!*\
-  !*** ./components/Form/index.less ***!
-  \************************************/
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ 237:
-/*!***************************************!*\
-  !*** ./components/AsideMenu/index.js ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	__webpack_require__(/*! ./index.less */ 238);
-
-	var _react = __webpack_require__(/*! react */ 5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var AsideMenu = function (_React$Component) {
-		_inherits(AsideMenu, _React$Component);
-
-		function AsideMenu() {
-			_classCallCheck(this, AsideMenu);
-
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(AsideMenu).apply(this, arguments));
-		}
-
-		_createClass(AsideMenu, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"dl",
-					{ className: "m-aside-menu" },
-					_react2.default.createElement(
-						"dt",
-						{ className: "group-name" },
-						"我的工作"
-					),
-					_react2.default.createElement(
-						"dd",
-						{ className: "item" },
-						"我的申请单列表"
-					),
-					_react2.default.createElement(
-						"dd",
-						{ className: "item" },
-						"我的申请单列表"
-					),
-					_react2.default.createElement(
-						"dd",
-						{ className: "item" },
-						"我的申请单列表"
-					),
-					_react2.default.createElement(
-						"dt",
-						{ className: "group-name" },
-						"我的工作"
-					),
-					_react2.default.createElement(
-						"dd",
-						{ className: "item" },
-						"我的申请单列表"
-					),
-					_react2.default.createElement(
-						"dd",
-						{ className: "item" },
-						"我的申请单列表"
-					),
-					_react2.default.createElement(
-						"dd",
-						{ className: "item" },
-						"我的申请单列表"
-					),
-					_react2.default.createElement(
-						"dt",
-						{ className: "group-name" },
-						"我的工作"
-					),
-					_react2.default.createElement(
-						"dd",
-						{ className: "item" },
-						"我的申请单列表"
-					),
-					_react2.default.createElement(
-						"dd",
-						{ className: "item" },
-						"我的申请单列表"
-					),
-					_react2.default.createElement(
-						"dd",
-						{ className: "item" },
-						"我的申请单列表"
-					)
-				);
-			}
-		}]);
-
-		return AsideMenu;
-	}(_react2.default.Component);
-
-		exports.default = AsideMenu;
-
-/***/ },
-
-/***/ 238:
+/***/ 187:
 /*!*****************************************!*\
   !*** ./components/AsideMenu/index.less ***!
   \*****************************************/
@@ -1202,524 +1773,17 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 240:
-/*!***************************************!*\
-  !*** ./components/Table/constants.js ***!
-  \***************************************/
+/***/ 188:
+/*!************************************!*\
+  !*** ./components/Form/index.less ***!
+  \************************************/
 /***/ function(module, exports) {
 
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	// 定义组件通用常量
-	var Constants = {
-
-		// change事件名称
-		CHANGE_EVENT: Symbol(),
-
-		// 创建数据
-		ADD_ITEM: Symbol(),
-
-		// 删除数据
-		DEL_ITEM: Symbol(),
-
-		// 更新数据
-		UPDATE_ITEM: Symbol(),
-
-		// 本地缓存数据
-		CLIENT_DATA: Symbol(),
-
-		// 远程数据
-		REMOTE_DATA: Symbol()
-	};
-
-		exports.default = Constants;
+	// removed by extract-text-webpack-plugin
 
 /***/ },
 
-/***/ 241:
-/*!************************************!*\
-  !*** ./components/Header/index.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	__webpack_require__(/*! ./index.less */ 245);
-
-	var _react = __webpack_require__(/*! react */ 5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _logo = __webpack_require__(/*! ../logo */ 99);
-
-	var _logo2 = _interopRequireDefault(_logo);
-
-	var _menu = __webpack_require__(/*! ../menu */ 100);
-
-	var _menu2 = _interopRequireDefault(_menu);
-
-	var _userLogo = __webpack_require__(/*! ../user-logo */ 107);
-
-	var _userLogo2 = _interopRequireDefault(_userLogo);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Header = function (_React$Component) {
-		_inherits(Header, _React$Component);
-
-		function Header() {
-			var _Object$getPrototypeO;
-
-			var _temp, _this, _ret;
-
-			_classCallCheck(this, Header);
-
-			for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-				args[_key] = arguments[_key];
-			}
-
-			return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Header)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {}, _temp), _possibleConstructorReturn(_this, _ret);
-		}
-
-		_createClass(Header, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ className: "m-header", onClick: this.onClick },
-					_react2.default.createElement(
-						"div",
-						{ className: "header-content" },
-						_react2.default.createElement(_logo2.default, null),
-						_react2.default.createElement(_userLogo2.default, null),
-						_react2.default.createElement(_menu2.default, null)
-					)
-				);
-			}
-		}, {
-			key: "onClick",
-			value: function onClick(evt) {
-				alert("Clicked!");
-			}
-		}]);
-
-		return Header;
-	}(_react2.default.Component);
-
-		exports.default = Header;
-
-/***/ },
-
-/***/ 242:
-/*!*************************************!*\
-  !*** ./components/Table/actions.js ***!
-  \*************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _constants = __webpack_require__(/*! ./constants */ 240);
-
-	var _constants2 = _interopRequireDefault(_constants);
-
-	var _dispatcher = __webpack_require__(/*! ../dispatcher */ 57);
-
-	var _dispatcher2 = _interopRequireDefault(_dispatcher);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = {
-		create: function create(data) {
-			_dispatcher2.default.dispatch({
-				actionType: _constants2.default.ADD_ITEM,
-				data: data
-			});
-		}
-		};
-
-/***/ },
-
-/***/ 243:
-/*!***********************************!*\
-  !*** ./components/Table/index.js ***!
-  \***********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	__webpack_require__(/*! ./index.less */ 246);
-
-	var _react = __webpack_require__(/*! react */ 5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(/*! react-dom */ 18);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _actions = __webpack_require__(/*! ./actions */ 242);
-
-	var _actions2 = _interopRequireDefault(_actions);
-
-	var _store = __webpack_require__(/*! ./store */ 244);
-
-	var _store2 = _interopRequireDefault(_store);
-
-	var _constants = __webpack_require__(/*! ./constants */ 240);
-
-	var _constants2 = _interopRequireDefault(_constants);
-
-	var _util = __webpack_require__(/*! ../base/util */ 25);
-
-	var _util2 = _interopRequireDefault(_util);
-
-	var _Form = __webpack_require__(/*! ../Form */ 234);
-
-	var _Form2 = _interopRequireDefault(_Form);
-
-	var _Layer = __webpack_require__(/*! ../Layer */ 92);
-
-	var _Layer2 = _interopRequireDefault(_Layer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Table = function (_React$Component) {
-		_inherits(Table, _React$Component);
-
-		// 需要显示的数据列表
-
-		function Table(props) {
-			_classCallCheck(this, Table);
-
-			// 判断数据来源是本地数据（CLIENT_DATA）还是服务端数据（REMOTE_DATA）
-
-			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Table).call(this, props));
-
-			_this.dataType = _util2.default.isArray(props.data) ? _constants2.default.CLIENT_DATA : _constants2.default.REMOTE_DATA;
-
-			_this.state = {
-				count: 0,
-				page: props.page || 0,
-				size: props.size || 15,
-				title: props.title || "",
-				columns: props.columns || {}
-			};
-
-			// 获取数据列表
-			_this.getDataSource();
-
-			// 监听数据变化
-			_store2.default.addChangeListener(_this.onChange.bind(_this));
-			return _this;
-		}
-
-		// 获取指定分页的数据
-
-
-		_createClass(Table, [{
-			key: "getDataSource",
-			value: function getDataSource(page) {
-				var _this2 = this;
-
-				var dataSource = this.props.data;
-				var queryParams = Object.assign({
-					size: this.state.size,
-					page: page || this.state.page
-				}, this.props.params);
-
-				_store2.default.getData(dataSource, queryParams).then(function (result) {
-					_this2.setState(Object.assign(_this2.state, {
-						data: result.data,
-						count: result.count
-					}));
-				});
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				var _this3 = this;
-
-				// 表格标题
-				var dataThs = _util2.default.map(this.state.columns, function (pname, pvalue) {
-					return _react2.default.createElement(
-						"th",
-						{ "data-key": pname, key: pname },
-						_util2.default.isObject(pvalue) ? pvalue.title : pvalue
-					);
-				});
-
-				// 表格数据列表
-				var dataRows = this.state.data && this.state.data.length ? this.state.data.map(function (item, index) {
-					var columns = _util2.default.map(_this3.state.columns, function (pname, column) {
-						var isObj = _util2.default.isObject(column);
-						var hasMap = isObj && _util2.default.isObject(column.map);
-						var hasRender = isObj && _util2.default.isFunc(column.render);
-						var pvalue = hasMap ? column.map[item[pname]] : item[pname];
-
-						return _react2.default.createElement(
-							"td",
-							{ "data-key": pname, key: pname },
-							hasRender ? column.render(pvalue) : pvalue
-						);
-					});
-
-					return _react2.default.createElement(
-						"tr",
-						{ key: index, "data-id": item.id },
-						columns
-					);
-				}) : _react2.default.createElement(
-					"tr",
-					null,
-					_react2.default.createElement(
-						"td",
-						{ colSpan: 10000 },
-						"暂无数据！"
-					)
-				);
-
-				// 分页
-				var pageCount = Math.ceil(this.state.count / this.state.size);
-				var pageNav = new Array(pageCount).fill(0).map(function (item, index) {
-					return _react2.default.createElement(
-						"li",
-						{ key: index, onClick: _this3.onPageItemClick.bind(_this3), "data-value": index, className: index == _this3.state.page ? "selected" : "" },
-						index + 1
-					);
-				});
-
-				return _react2.default.createElement(
-					"div",
-					{ className: "m-datalist" },
-					_react2.default.createElement(
-						"div",
-						{ className: "search-content" },
-						_react2.default.createElement(
-							"div",
-							{ className: "button", onClick: this.showAppendModal.bind(this) },
-							"添加记录"
-						)
-					),
-					_react2.default.createElement(
-						"div",
-						{ className: "table-content" },
-						_react2.default.createElement(
-							"div",
-							{ className: "t-title" },
-							this.state.title
-						),
-						_react2.default.createElement(
-							"table",
-							{ className: "" },
-							_react2.default.createElement(
-								"thead",
-								null,
-								_react2.default.createElement(
-									"tr",
-									null,
-									dataThs
-								)
-							),
-							_react2.default.createElement(
-								"tbody",
-								null,
-								dataRows
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "t-footer" },
-							_react2.default.createElement(
-								"ul",
-								null,
-								pageNav
-							)
-						)
-					)
-				);
-			}
-		}, {
-			key: "showAppendModal",
-			value: function showAppendModal(event) {
-				var columns = _util2.default.clone(this.state.columns, function (pname, item) {
-					return !_util2.default.isObject(item) || item.editable !== false;
-				});
-
-				var props = {
-					title: "这里是标题",
-					content: _react2.default.createElement(_Form2.default, { columns: columns }),
-					actions: [{
-						name: "确定",
-						className: "confirm",
-						action: function action() {
-							var formData = _Form2.default.getFormData();
-
-							console.log(formData);
-						}
-					}, {
-						name: "取消",
-						className: "cancel",
-						action: function action() {}
-					}]
-				};
-
-				_Layer2.default.modal(props);
-
-				/*
-	   ReactDom.render(
-	   	<Modal {...modalConfig} />,
-	   	document.getElementById("container")
-	   );
-	   */
-
-				/**
-	   TableActions.create({
-	   	id : 26,
-	   	name : "miracle",
-	   	age : "18",
-	   	gender : "female"
-	   });
-	   **/
-			}
-		}, {
-			key: "onChange",
-			value: function onChange() {
-				this.setState({
-					page: 0,
-					size: 15,
-					data: _store2.default.getData()
-				});
-			}
-		}, {
-			key: "onPageItemClick",
-			value: function onPageItemClick(event) {
-				var page = event.target.getAttribute("data-value");
-
-				if (this.dataType === _constants2.default.CLIENT_DATA) {} else {
-					this.getDataSource(page);
-				}
-			}
-		}]);
-
-		return Table;
-	}(_react2.default.Component);
-
-	Table.defaultProps = {
-		count: 0, // 记录总数
-		page: 0, // 当前的page页码
-		size: 15, // 每一页显示的数据的多少
-		title: "", // 表格的标题
-		columns: {}, // 列设置
-		data: [] };
-		exports.default = Table;
-
-/***/ },
-
-/***/ 244:
-/*!***********************************!*\
-  !*** ./components/Table/store.js ***!
-  \***********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _events = __webpack_require__(/*! events */ 108);
-
-	var _constants = __webpack_require__(/*! ./constants */ 240);
-
-	var _constants2 = _interopRequireDefault(_constants);
-
-	var _util = __webpack_require__(/*! ../base/util */ 25);
-
-	var _util2 = _interopRequireDefault(_util);
-
-	var _dispatcher = __webpack_require__(/*! ../dispatcher */ 57);
-
-	var _dispatcher2 = _interopRequireDefault(_dispatcher);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var TableStore = Object.assign({}, _events.EventEmitter.prototype, {
-		getData: function getData(dataSource, params) {
-			return new Promise(function (resolve, reject) {
-				// 缓存数据
-				if (_util2.default.isArray(dataSource)) {
-					return resolve({
-						data: dataSource,
-						count: dataSource.length
-					});
-				}
-
-				// 服务端异步数据
-				_util2.default.getJSON(dataSource, params).then(function (result) {
-					if (result.status == 0) {
-						resolve(result);
-					} else {
-						reject(result.msg);
-					}
-				});
-			});
-		},
-		create: function create(itemData) {},
-		emitChange: function emitChange() {
-			this.emit(_constants2.default.CHANGE_EVENT);
-		},
-		addChangeListener: function addChangeListener(callback) {
-			this.on(_constants2.default.CHANGE_EVENT, callback);
-		},
-		removeChangeListener: function removeChangeListener(callback) {
-			this.removeListener(_constants2.default.CHANGE_EVENT, callback);
-		}
-	});
-
-	_dispatcher2.default.register(function (action) {
-		switch (action.actionType) {
-			case _constants2.default.ADD_ITEM:
-				TableStore.create(action.data);
-				TableStore.emitChange();
-		}
-	});
-
-	exports.default = TableStore;
-
-/***/ },
-
-/***/ 245:
+/***/ 189:
 /*!**************************************!*\
   !*** ./components/Header/index.less ***!
   \**************************************/
@@ -1729,7 +1793,17 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 246:
+/***/ 190:
+/*!*************************************!*\
+  !*** ./components/Layer/index.less ***!
+  \*************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ 191:
 /*!*************************************!*\
   !*** ./components/Table/index.less ***!
   \*************************************/
@@ -1739,76 +1813,111 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 264:
+/***/ 202:
 /*!*********************************!*\
-  !*** ./components/Base/util.js ***!
+  !*** ./pages/manage/index.less ***!
   \*********************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ 240:
+/*!***********************************!*\
+  !*** ./pages/manage/data-list.js ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function($) {"use strict";
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	// 基本方法定义
-	var BaseUtil = Object.assign({}, {
-		// 仿照Array.map方法对obj进行处理并返回数组
 
-		map: function map(obj, callback) {
-			var mapResult = [];
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-			for (var pname in obj) {
-				mapResult.push(callback(pname, obj[pname]));
-			}
+	var _react = __webpack_require__(/*! react */ 4);
 
-			return mapResult;
-		},
+	var _react2 = _interopRequireDefault(_react);
 
+	var _Table = __webpack_require__(/*! ../../components/Table */ 101);
 
-		// 克隆对象
-		clone: function clone(obj, filterFunc) {
-			var newObj = {};
+	var _Table2 = _interopRequireDefault(_Table);
 
-			for (var pname in obj) {
-				if (filterFunc(pname, obj[pname])) {
-					newObj[pname] = obj[pname];
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var tableProps = {
+		title: "数据表格标题",
+		columns: {
+			id: {
+				title: "序号",
+				editable: false
+			},
+			username: "姓名",
+			age: "年龄",
+			gender: {
+				title: "性别",
+				map: {
+					0: "女",
+					1: "男"
+				},
+				hint: "请选择性别"
+			},
+			_operation: {
+				title: "操作",
+				render: function render() {
+					return _react2.default.createElement(
+						"div",
+						{ className: "t-operation" },
+						_react2.default.createElement(
+							"span",
+							{ className: "edit" },
+							"编辑"
+						),
+						_react2.default.createElement(
+							"span",
+							{ className: "delete" },
+							"删除"
+						)
+					);
 				}
 			}
-
-			return newObj;
 		},
+		data: "/user/getUserList"
+	};
 
+	var DataList = function (_React$Component) {
+		_inherits(DataList, _React$Component);
 
-		// 判断是否是数组
-		isArray: function isArray(target) {
-			return Object.prototype.toString.call(target) === "[object Array]";
-		},
+		function DataList() {
+			_classCallCheck(this, DataList);
 
-
-		// 判断是否是对象
-		isObject: function isObject(target) {
-			return Object.prototype.toString.call(target) === "[object Object]";
-		},
-
-
-		// 判断是否是方法
-		isFunc: function isFunc(target) {
-			return Object.prototype.toString.call(target) === "[object Function]";
-		},
-
-
-		// 获取远程json数据
-		getJSON: function getJSON(url, params) {
-			return new Promise(function (resolve, reject) {
-				$.getJSON(url, params, function (result) {
-					resolve(result);
-				});
-			});
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(DataList).apply(this, arguments));
 		}
-	});
 
-		exports.default = BaseUtil;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 26)))
+		_createClass(DataList, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "m-data-list" },
+					_react2.default.createElement(_Table2.default, tableProps)
+				);
+			}
+		}]);
+
+		return DataList;
+	}(_react2.default.Component);
+
+	exports.default = DataList;
+		;
 
 /***/ }
 
