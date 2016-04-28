@@ -30,7 +30,14 @@ webpackJsonp([1],{
 
 	var _dataList2 = _interopRequireDefault(_dataList);
 
+	var _Login = __webpack_require__(/*! ../../components/Login */ 255);
+
+	var _Login2 = _interopRequireDefault(_Login);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// 测试
+	_Login2.default.show();
 
 	// 自动创建react组件容器
 	function createContainer(uniqueId) {
@@ -1822,6 +1829,94 @@ webpackJsonp([1],{
 
 	exports.default = DataList;
 		;
+
+/***/ },
+
+/***/ 255:
+/*!***********************************!*\
+  !*** ./components/Login/index.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	__webpack_require__(/*! ./index.less */ 256);
+
+	var _react = __webpack_require__(/*! react */ 4);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(/*! react-dom */ 18);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function createContainer() {
+		var container = document.createElement("div");
+		container.className = "content";
+
+		document.body.appendChild(container);
+
+		return container;
+	}
+
+	var LoginComp = function (_React$Component) {
+		_inherits(LoginComp, _React$Component);
+
+		function LoginComp() {
+			_classCallCheck(this, LoginComp);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(LoginComp).apply(this, arguments));
+		}
+
+		_createClass(LoginComp, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement("div", { className: "m-login" });
+			}
+		}]);
+
+		return LoginComp;
+	}(_react2.default.Component);
+
+	var Login = {
+		show: function () {
+			var loginInstance = null;
+
+			return function () {
+				if (loginInstance == null) {
+					loginInstance = _reactDom2.default.render(_react2.default.createElement(LoginComp, null), createContainer());
+				}
+			};
+		}(),
+
+		hide: function hide() {}
+	};
+
+		exports.default = Login;
+
+/***/ },
+
+/***/ 256:
+/*!*************************************!*\
+  !*** ./components/Login/index.less ***!
+  \*************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 

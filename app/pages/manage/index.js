@@ -9,6 +9,11 @@ import AsideMenu from "../../components/AsideMenu";
 
 import DataList from "./data-list";
 
+import Login from "../../components/Login";
+
+// 测试
+Login.show();
+
 // 自动创建react组件容器
 function createContainer(uniqueId){
 	let container = document.createElement("div");
