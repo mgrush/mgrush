@@ -46,6 +46,32 @@ let BaseUtil = Object.assign({}, {
 				resolve( result );
 			});
 		});
+	},
+
+	// 发送post数据提交
+	postData(url, params){
+		return new Promise((resolve, reject) => {
+			$.ajax({
+				url : url,
+				data : params,
+				type : "post",
+				dataType : "json",
+				success : (result) => {
+					resolve(result);
+				},
+				error : (xhr, error) => {
+					reject(xhr, error);
+				}
+			});
+		});
+	},
+
+	// 获取cookie数据
+	getCookie(paramName){
+		let cookieStr = document.cookie.replace(/\"\"/g, "").replace(/;\s/g, '","').replace(/=/g, '":"'); 
+		let cookieObj = cookieStr ? JSON.parse( "{\"" + cookieStr + "\"}") : {};
+		
+		return paramName ? cookieObj[paramName] || null : cookieObj;
 	}
 });
 

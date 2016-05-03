@@ -1,7 +1,7 @@
 "use strict";
 
 import Constants from "./constants";
-import AppDispatcher from "../dispatcher";
+import AppDispatcher from "../Dispatcher";
 
 export default {
 	create( data ){

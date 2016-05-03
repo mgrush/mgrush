@@ -7,12 +7,8 @@ import ReactDOM from "react-dom";
 import Header from "../../components/Header";
 import AsideMenu from "../../components/AsideMenu";
 
-import DataList from "./data-list";
-
+import DataList from "./components/data-list";
 import Login from "../../components/Login";
-
-// 测试
-Login.show();
 
 // 自动创建react组件容器
 function createContainer(uniqueId){

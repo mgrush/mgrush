@@ -3,14 +3,14 @@
 import "./index.less";
 import React from "react";
 import Menu from "../Menu";
-import UserLogo from "../user-logo";
+import UserLogo from "../UserLogo";
 
 export default class Header extends React.Component {
-	state = {}
+	state = {};
 
 	render(){
 		return (
-			<div className="m-header" onClick={this.onClick}>
+			<div className="m-header">
 				<div className="header-content">
 					<div className="m-logo"></div>	
 					<UserLogo/>
@@ -18,9 +18,5 @@ export default class Header extends React.Component {
 				</div>
 			</div>		
 		);
-	}
-
-	onClick(evt) {
-		alert("Clicked!");
 	}
 }

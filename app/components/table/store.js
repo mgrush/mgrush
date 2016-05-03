@@ -2,8 +2,8 @@
 
 import { EventEmitter } from "events";
 import Constants from "./constants";
-import BaseUtil from "../base/util";
-import AppDispatcher from "../dispatcher";
+import BaseUtil from "../Base/util";
+import AppDispatcher from "../Dispatcher";
 
 let TableStore = Object.assign({}, EventEmitter.prototype, {
 	getData(dataSource, params){

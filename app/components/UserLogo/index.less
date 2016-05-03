@@ -1,0 +1,75 @@
+@import "../Base/index.less";
+
+@userLogoWidth : 4.0rem;
+@userLogoHeight : 4.0rem;
+@operateListWidth : 12.0rem;
+@operateListHeight : 3.0rem;
+
+.m-dropdown {
+	display : inline-block;
+	height : @headerHeight;
+	min-width : @headerHeight;
+	text-align: center;
+	position: relative;
+
+	.login {
+		color: @white;
+		cursor: pointer;
+		display: inline-block;
+		.background(green);
+		.height(3.0rem, 3.0rem);
+		.padding(0, @unit * 4);
+		.margin((@headerHeight - 3) / 2, 0, 0, @unit * 5);
+		.borderRadius(@unit);
+	}
+
+	.user {
+		display: inline-block;
+		width: @userLogoWidth;
+		height: @userLogoHeight;
+		border-radius: @userLogoWidth;
+		margin-top: (@headerHeight - @userLogoHeight)/2;
+		background: url(./user-logo.jpeg?exports) 0 0 / cover no-repeat;
+
+		&:hover + .operate-list, & + .operate-list:hover {
+			display: block;
+		}
+	}
+
+	.operate-list {
+		display: none;
+		.position(fixed, (@userLogoWidth + @headerHeight) / 2, auto, auto, auto);
+		.padding(2.0rem, 0, 0, 0);
+
+		ul {
+			.border();
+			.background(@white);
+			.width(@operateListWidth);
+			.borderRadius(@unit);
+			
+			li {
+				cursor: pointer;
+				text-align: left;
+				.padding(0, 0, 0, @operateListHeight / 2);
+				.height(@operateListHeight, @operateListHeight);
+
+				&:hover {
+					.background(#f3f7f6);
+				}
+
+				&:first-child {
+					.borderRadius(@unit, @unit, 0, 0);
+				}
+
+				&:last-child {
+					.borderRadius(0, 0, @unit, @unit);
+				}
+
+				&.sep {
+					.height(0.1rem);
+					.background(@borderColor);
+				}
+			}
+		}
+	}
+}

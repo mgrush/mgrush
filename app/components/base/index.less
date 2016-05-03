@@ -11,8 +11,6 @@
 @logoHeight : 3.2rem;
 @logoWidth : 17.5rem;
 
-@userLogoWidth : 4.0rem;
-@userLogoHeight : 4.0rem;
 
 @treeNodeHeight : 4.0rem;
 @treeNodePadding : 1.5rem;
@@ -27,6 +25,7 @@
 @light : #666;
 @white : #fff;
 @bright : green;
+@borderColor : #e5e5e5;
 @bodyBgColor : #f6f6f6;
 
 /** float-left, float-right **/
@@ -51,11 +50,15 @@
 
 /** border, border-radius等方法 **/
 .border(){
-	border: 0.1rem solid #e5e5e5;
+	border: 0.1rem solid @borderColor;
 }
 
 .border(@dir, @width: 0.1rem) {
-	border-@{dir}: @width solid #e5e5e5;
+	border-@{dir}: @width solid @borderColor;
+}
+
+.borderNone(){
+	border: none;
 }
 
 .borderRadius(@topLeft: 0, @topRight: @topLeft, @bottomRight: @topRight, @bottomLeft: @topLeft){

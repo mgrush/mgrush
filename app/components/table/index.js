@@ -8,7 +8,7 @@ import TableActions from "./actions";
 import TableStore from "./store";
 import Constants from "./constants";
 
-import BaseUtil from "../base/util";
+import BaseUtil from "../Base/util";
 import Form from "../Form";
 import Layer from "../Layer";
 
