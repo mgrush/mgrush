@@ -1475,5 +1475,10 @@ table {
   border-spacing: 0;
   border-collapse: collapse;
 }
+input,
+select,
+textarea {
+  font-size: 1.4rem;
+}
 
 /*# sourceMappingURL=index.css.map*/

@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 	`password` varchar(32) NOT NULL default "",
 	`gender` tinyint(1) NOT NULL default 0 COMMENT "0: 女, 1: 男",
 	`age` tinyint(8) NOT NULL default 0,
-	PRIMARY KEY (`id`)
+	`createdAt` TIMESTAMP NOT NULL default CURRENT_TIMESTAMP,
+	`updatedAt` TIMESTAMP NOT NULL default CURRENT_TIMESTAMP, PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
