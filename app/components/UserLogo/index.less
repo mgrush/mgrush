@@ -2,8 +2,8 @@
 
 @userLogoWidth : 4.0rem;
 @userLogoHeight : 4.0rem;
-@operateListWidth : 12.0rem;
-@operateListHeight : 3.0rem;
+@menuListWidth : 12.0rem;
+@menuListHeight : 3.0rem;
 
 .m-dropdown {
 	display : inline-block;
@@ -31,12 +31,12 @@
 		margin-top: (@headerHeight - @userLogoHeight)/2;
 		background: url(./user-logo.jpeg?exports) 0 0 / cover no-repeat;
 
-		&:hover + .operate-list, & + .operate-list:hover {
+		&:hover + .menu-list, & + .menu-list:hover {
 			display: block;
 		}
 	}
 
-	.operate-list {
+	.menu-list {
 		display: none;
 		.position(fixed, (@userLogoWidth + @headerHeight) / 2, auto, auto, auto);
 		.padding(2.0rem, 0, 0, 0);
@@ -44,14 +44,14 @@
 		ul {
 			.border();
 			.background(@white);
-			.width(@operateListWidth);
+			.width(@menuListWidth);
 			.borderRadius(@unit);
 			
 			li {
 				cursor: pointer;
 				text-align: left;
-				.padding(0, 0, 0, @operateListHeight / 2);
-				.height(@operateListHeight, @operateListHeight);
+				.padding(0, 0, 0, @menuListHeight / 2);
+				.height(@menuListHeight, @menuListHeight);
 
 				&:hover {
 					.background(#f3f7f6);

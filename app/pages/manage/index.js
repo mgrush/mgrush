@@ -10,6 +10,37 @@ import AsideMenu from "../../components/AsideMenu";
 import DataList from "./components/data-list";
 import Login from "../../components/Login";
 
+import LoginAction from "../../components/Actions/LoginAction";
+
+// 页面导航条设置
+let headerConfig = {
+	// 已登陆用户显示的与用户相关的操作
+	userMenuList : [
+		[{ 
+			name : "个人中心", 
+			onClick : () => {
+				alert("个人中心"); 
+			}
+		}, {
+			name : "我的战绩",
+			onClick : () => {
+				alert("我的战绩");
+			}
+		}],
+		[{ 
+			name : "退出", 
+			onClick : () => {
+				LoginAction.submitLogout();
+			}
+		}]
+	]
+};
+
+ReactDOM.render(
+	<Header {...headerConfig} />,
+	document.getElementById("header")
+);
+
 // 自动创建react组件容器
 function createContainer(uniqueId){
 	let container = document.createElement("div");
@@ -21,11 +52,6 @@ function createContainer(uniqueId){
 	return container;
 }
 
-// 页面导航条设置
-ReactDOM.render(
-	<Header />,
-	document.getElementById("header")
-);
 
 // 左侧导航配置
 const MenuConfig = [{

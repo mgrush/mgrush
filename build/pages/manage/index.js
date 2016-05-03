@@ -34,7 +34,34 @@ webpackJsonp([1],{
 
 	var _Login2 = _interopRequireDefault(_Login);
 
+	var _LoginAction = __webpack_require__(/*! ../../components/Actions/LoginAction */ 96);
+
+	var _LoginAction2 = _interopRequireDefault(_LoginAction);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// 页面导航条设置
+	var headerConfig = {
+		// 已登陆用户显示的与用户相关的操作
+		userMenuList: [[{
+			name: "个人中心",
+			onClick: function onClick() {
+				alert("个人中心");
+			}
+		}, {
+			name: "我的战绩",
+			onClick: function onClick() {
+				alert("我的战绩");
+			}
+		}], [{
+			name: "退出",
+			onClick: function onClick() {
+				_LoginAction2.default.submitLogout();
+			}
+		}]]
+	};
+
+	_reactDom2.default.render(_react2.default.createElement(_Header2.default, headerConfig), document.getElementById("header"));
 
 	// 自动创建react组件容器
 	function createContainer(uniqueId) {
@@ -46,9 +73,6 @@ webpackJsonp([1],{
 
 		return container;
 	}
-
-	// 页面导航条设置
-	_reactDom2.default.render(_react2.default.createElement(_Header2.default, null), document.getElementById("header"));
 
 	// 左侧导航配置
 	var MenuConfig = [{

@@ -55,7 +55,7 @@ class LoginComp extends React.Component {
 		if( loginInfo.isUserLogin == true ) {
 			this.remove();
 		}else {
-			alert(loginInfo.message);
+			console.log(loginInfo.message);
 		}
 	}
 

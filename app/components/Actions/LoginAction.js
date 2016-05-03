@@ -2,6 +2,7 @@
 
 import Constants from "../Constants";
 import AppDispatcher from "../Dispatcher";
+import LoginStore from "../Stores/LoginStore";
 
 export default {
 	submitLogin(username = "", password = ""){

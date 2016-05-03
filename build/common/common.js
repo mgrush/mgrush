@@ -6329,17 +6329,9 @@
 		_inherits(Header, _React$Component);
 
 		function Header() {
-			var _Object$getPrototypeO;
-
-			var _temp, _this, _ret;
-
 			_classCallCheck(this, Header);
 
-			for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-				args[_key] = arguments[_key];
-			}
-
-			return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Header)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {}, _temp), _possibleConstructorReturn(_this, _ret);
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Header).apply(this, arguments));
 		}
 
 		_createClass(Header, [{
@@ -6352,7 +6344,7 @@
 						"div",
 						{ className: "header-content" },
 						_react2.default.createElement("div", { className: "m-logo" }),
-						_react2.default.createElement(_UserLogo2.default, null),
+						_react2.default.createElement(_UserLogo2.default, { menuList: this.props.userMenuList }),
 						_react2.default.createElement(_Menu2.default, null)
 					)
 				);
@@ -6362,6 +6354,9 @@
 		return Header;
 	}(_react2.default.Component);
 
+	Header.defaultProps = {
+		userMenuList: []
+	};
 		exports.default = Header;
 
 /***/ },
@@ -13005,6 +13000,10 @@
 
 	var _Dispatcher2 = _interopRequireDefault(_Dispatcher);
 
+	var _LoginStore = __webpack_require__(/*! ../Stores/LoginStore */ 109);
+
+	var _LoginStore2 = _interopRequireDefault(_LoginStore);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = {
@@ -13214,7 +13213,7 @@
 				if (loginInfo.isUserLogin == true) {
 					this.remove();
 				} else {
-					alert(loginInfo.message);
+					console.log(loginInfo.message);
 				}
 			}
 
@@ -13469,7 +13468,19 @@
 			});
 		},
 		submitLogout: function submitLogout() {
-			console.log("logout");
+			var _this2 = this;
+
+			_util2.default.getJSON("/user/logout").then(function (result) {
+				if (result.status == 0) {
+					_this2.cacheData.message = "";
+					_this2.cacheData.isUserLogin = false;
+				} else {
+					_this2.cacheData.isUserLogin = true;
+					_this2.cacheData.message = result.message;
+				}
+
+				_this2.emitChange();
+			});
 		}
 	});
 
@@ -13484,7 +13495,6 @@
 
 			case _Constants2.default.LOGOUT:
 				LoginStore.submitLogout();
-				LoginStore.emitChange();
 				break;
 		}
 	});
@@ -13573,32 +13583,48 @@
 					);
 				}
 
+				// 尚未设置任何的下拉菜单
+				if (!this.props.menuList.length) {
+					return _react2.default.createElement(
+						"div",
+						{ className: "m-dropdown" },
+						_react2.default.createElement("span", { className: "user" })
+					);
+				}
+
+				var menuList = [],
+				    groupLength = this.props.menuList.length;
+
+				this.props.menuList.map(function (group, index) {
+					// 处理只有一个菜单项的情况，可以不按照group的形式配置
+					if (!_util2.default.isArray(group)) {
+						group = [group];
+					}
+
+					group.forEach(function (item, keyIndex) {
+						menuList.push(_react2.default.createElement(
+							"li",
+							{ className: item.className || "", onClick: item.onClick, key: index + "-" + keyIndex },
+							item.name
+						));
+					});
+
+					if (index < groupLength - 1) {
+						menuList.push(_react2.default.createElement("li", { className: "sep", key: index + "-sep" }));
+					}
+				});
+
 				return _react2.default.createElement(
 					"div",
 					{ className: "m-dropdown" },
 					_react2.default.createElement("span", { className: "user" }),
 					_react2.default.createElement(
 						"div",
-						{ className: "operate-list" },
+						{ className: "menu-list" },
 						_react2.default.createElement(
 							"ul",
 							null,
-							_react2.default.createElement(
-								"li",
-								null,
-								"个人信息"
-							),
-							_react2.default.createElement(
-								"li",
-								null,
-								"设置"
-							),
-							_react2.default.createElement("li", { className: "sep" }),
-							_react2.default.createElement(
-								"li",
-								null,
-								"退出"
-							)
+							menuList
 						)
 					)
 				);
@@ -13624,6 +13650,9 @@
 		return UserLogo;
 	}(_react2.default.Component);
 
+	UserLogo.defaultProps = {
+		menuList: []
+	};
 	exports.default = UserLogo;
 		;
 

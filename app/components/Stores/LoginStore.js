@@ -32,7 +32,17 @@ let LoginStore = Object.assign({}, BaseStore, {
 	},
 
 	submitLogout(){
-		console.log("logout");
+		BaseUtil.getJSON("/user/logout").then((result) => {
+			if( result.status == 0 ) {
+				this.cacheData.message = "";
+				this.cacheData.isUserLogin = false;
+			}else {
+				this.cacheData.isUserLogin = true;
+				this.cacheData.message = result.message;
+			}
+
+			this.emitChange();
+		});
 	}
 });
 
@@ -47,7 +57,6 @@ AppDispatcher.register(( action ) => {
 
 		case Constants.LOGOUT :
 			LoginStore.submitLogout();
-			LoginStore.emitChange();
 			break;
 	}
 });

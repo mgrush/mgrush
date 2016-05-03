@@ -6,14 +6,16 @@ import Menu from "../Menu";
 import UserLogo from "../UserLogo";
 
 export default class Header extends React.Component {
-	state = {};
+	static defaultProps = {
+		userMenuList : []
+	};
 
 	render(){
 		return (
 			<div className="m-header">
 				<div className="header-content">
 					<div className="m-logo"></div>	
-					<UserLogo/>
+					<UserLogo menuList={this.props.userMenuList}/>
 					<Menu/>
 				</div>
 			</div>		
