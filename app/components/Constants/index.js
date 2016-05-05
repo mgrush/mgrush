@@ -23,6 +23,9 @@ const Constants = {
 
 	// 登出
 	LOGOUT : Symbol(),
+
+	// 注册
+	REGIST : Symbol()
 };
 
 export default Constants;

@@ -43,20 +43,46 @@ let LoginStore = Object.assign({}, BaseStore, {
 
 			this.emitChange();
 		});
+	},
+
+	// 用户注册登录
+	submitRegist(username, password){
+		BaseUtil.postData("/user/regist", {username, password}).then((result) => {
+			if( result.status == 0 ) {
+				// 注册成功，直接登录
+				this.cacheData.message = "";
+				this.cacheData.isUserLogin = true;
+			}else {
+				this.cacheData.isUserLogin = false;
+				this.cacheData.message = result.message;
+			}
+
+			this.emitChange();
+		});
 	}
 });
 
 AppDispatcher.register(( action ) => {
+	let username = null;
+	let password = null;
+
 	switch( action.actionType ) {
 		case Constants.LOGIN : 
-			let username = action.data.username;
-			let password = action.data.password;
+			username = action.data.username;
+			password = action.data.password;
 
 			LoginStore.submitLogin(username, password);
 			break;
 
 		case Constants.LOGOUT :
 			LoginStore.submitLogout();
+			break;
+
+		case Constants.REGIST :
+			username = action.data.username;
+			password = action.data.password;
+
+			LoginStore.submitRegist(username, password);
 			break;
 	}
 });

@@ -8,17 +8,17 @@ const Container = {
 	__refers : [],
 	__containers : [],
 
-	createContainer : function(){
+	createContainer : function(id){
 		let container = document.createElement("div");
-			container.id = new Date().getTime();
+			container.id = id || new Date().getTime();
 
 		this.__containers.push( document.body.appendChild(container) );
 
 		return container;
 	},
 
-	renderComponent : function(Component, props){
-		var container = this.createContainer();
+	renderComponent : function(Component, props, containerId){
+		var container = this.createContainer(containerId);
 
 		this.__containers.push( container );
 		this.__refers.push( ReactDom.render(<Component {...props} />, container) );

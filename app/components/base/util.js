@@ -60,7 +60,7 @@ let BaseUtil = Object.assign({}, {
 					resolve(result);
 				},
 				error : (xhr, error) => {
-					reject(xhr, error);
+					reject(error);
 				}
 			});
 		});

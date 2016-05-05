@@ -167,6 +167,7 @@
   background: rgba(0, 0, 0, 0.6);
 }
 .m-login .content {
+  overflow: hidden;
   width: 50rem;
   height: 35rem;
   line-height: initial;
@@ -179,6 +180,27 @@
   left: 50%;
   z-index: initial;
   margin: -17.5rem 0 0 -25rem;
+}
+.m-login .content .slide {
+  width: 100rem;
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  z-index: initial;
+  -webkit-transition: left 0.2s ease-in;
+  transition: left 0.2s ease-in;
+}
+.m-login .content .slide .login-content,
+.m-login .content .slide .regist-content {
+  float: left;
+  width: 50rem;
+  height: 35rem;
+  line-height: initial;
+}
+.m-login .content .regist-content .left-content {
+  padding: 8rem 4rem 2rem 4rem;
 }
 .m-login .content .left-content,
 .m-login .content .right-content {
@@ -228,7 +250,9 @@
   height: 2rem;
   line-height: 2rem;
 }
-.m-login .content .login-button {
+.m-login .content .login-button,
+.m-login .content .regist-button {
+  cursor: pointer;
   color: #fff;
   text-align: center;
   font-size: 1.6rem;

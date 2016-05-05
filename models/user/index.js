@@ -17,11 +17,11 @@ var User = sequelize.define("user", {
 	},
 	gender : {
 		type : Sequelize.INTEGER,
-		allowNull : false
+		allowNull : true
 	},
 	age : {
 		type : Sequelize.INTEGER,
-		allowNull : false
+		allowNull : true
 	},
 	createdAt : {
 		type : Sequelize.DATE
@@ -64,5 +64,36 @@ module.exports = {
 				reject(error);
 			});
 		});			
+	},
+
+	regist : function(username, password){
+		return new Promise(function(resolve, reject){
+			User.create({ username, password }).then(function(user){
+				resolve(user);
+			}).catch(function(error){
+				reject(error);
+			});
+		});		 
+	},
+
+	getUserList : function(){
+		var findUsersPromise = User.findAll({
+			where : {}
+		});
+
+		var getCountPromise = User.count({
+			where : {}
+		});
+
+		return new Promise(function(resolve, reject){
+			Promise.all([findUsersPromise, getCountPromise]).then((resp) => {
+				var users = resp[0];
+				var count = resp[1];
+
+				resolve({ users, count });
+			}).catch(function(error){
+				reject(error);
+			});
+		});
 	}
 };

@@ -19,5 +19,15 @@ export default {
 		AppDispatcher.dispatch({
 			actionType : Constants.LOGOUT
 		});
+	},
+
+	submitRegist(username = "", password = ""){
+		AppDispatcher.dispatch({
+			data : {
+				username,
+				password
+			},
+			actionType : Constants.REGIST
+		});
 	}
 };
