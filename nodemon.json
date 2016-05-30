@@ -1,13 +1,5 @@
 {
 	"restartable" : "rs",
-	"ignore" : [
-		"build"
-	],
-	"watch" : [
-		"app.js",
-		"lib",
-		"controllers",
-		"models",
-		"modules"
-	]
+	"ignore" : [ "build" ],
+	"watch" : [ "app.js", "lib", "protected" ]
 }

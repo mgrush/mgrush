@@ -1,40 +1,4 @@
-@import "../../components/Base/index.less";
-@import "../../components/AwesomeFont/index.less";
-
-html {
-	font-size: 10px;
-}
-
-body {
-	margin: 0;
-	padding: 0;
-	font-size: 1.4rem;
-	min-width: 128.0rem;
-	overflow: scroll;
-	line-height: 2.0rem;
-	background-color: @bodyBgColor;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-ul, li, dl, dt, dd {
-	padding: 0;
-	margin: 0;
-	list-style-type: none;
-}
-
-h1, h2, h3, h4, h5 {
-	padding: 0;
-	margin: 0;
-}
-
-table {
-	border-spacing: 0;
-	border-collapse: collapse;
-}
-
-input, select, textarea {
-	font-size: 1.4rem;
-}
+@import "./reset.less";
+@import "~antd/lib/style/themes/default.less";
+@import "~antd/lib/style/core/index.less";
+@import "~antd/lib/style/components.less";

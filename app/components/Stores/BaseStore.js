@@ -1,7 +1,7 @@
 "use strict";
 
-import {EventEmitter} from "events";
-import Constants from "../Constants";
+import { EventEmitter } from "events";
+import Constants from "Constants";
 
 const BaseStore = Object.assign({}, EventEmitter.prototype, {
 	emitChange(){

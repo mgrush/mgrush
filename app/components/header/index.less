@@ -1,26 +1,24 @@
 @import "../Base/index.less";
 
 .m-header {
-	.border(bottom);
-	.height(@headerHeight, @headerHeight);
-	.background(rgba(255, 255, 255, .80));
-	.position(fixed, 0, 0, auto, 0, 9999);
+	minWidth: @contentWidth;
+}
 
-	.header-content {
-		.margin(0, auto);
-		.height(@headerHeight);
-		.width(@contentWidth);
-	}
+.m-header .menu {
+	background-color: @dark;
 
 	.m-logo {
-		.margin((@headerHeight - @logoHeight)/2, 0rem);
-		display: inline-block;
-		.width(@logoWidth);
-		.height(@logoHeight);
-		.background(url(//wacai-file.b0.upaiyun.com/common/c/header/img/logo@2x.png) 0 0 / cover no-repeat);
+		float: left;
+		width: 12.0rem;
+		height: 3.2rem;
+		margin: 0.8rem 4.0rem 0.8rem 12.0rem;
+		background: #333;
+		border-radius: 0.4rem;
 	}
+}
 
-	.m-dropdown, .m-menu {
-		.float(right);
+.m-header .sub-menu {
+	.ant-menu {
+		padding: 0 12.0rem;
 	}
 }
