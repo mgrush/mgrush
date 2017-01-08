@@ -1,7 +1,11 @@
 /** 页面颜色 **/
 /** 页面的固定宽度 **/
 .m-header {
-  minWidth: 120rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-width: 120rem;
 }
 .m-header .menu {
   background-color: #404040;
@@ -19,5 +23,40 @@
 }
 /** 页面颜色 **/
 /** 页面的固定宽度 **/
+/** 页面颜色 **/
+/** 页面的固定宽度 **/
+.m-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 8.7rem;
+}
+.m-content .content-wrap {
+  display: none;
+  min-height: 100%;
+  background: #F6F6F6;
+  padding: 1.0rem 1.6rem;
+}
+.m-content .content-wrap.selected {
+  display: block;
+}
+/** 页面颜色 **/
+/** 页面的固定宽度 **/
+.m-albums {
+  margin: 0rem auto;
+  width: 120rem;
+  background: #FFF;
+  min-height: 50.0rem;
+  border-radius: 0.8rem;
+  border: 0.1rem solid #e9e9e9;
+}
+.m-albums .toolbar {
+  padding: 1.0rem;
+  border-bottom: 0.1rem solid #e9e9e9;
+}
+.m-albums .toolbar .ant-btn:first-child {
+  margin-right: 1.0rem;
+}
 
 /*# sourceMappingURL=index.css.map*/

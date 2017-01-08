@@ -14,7 +14,8 @@ import Content from "Content";
 export default class LayoutView extends React.Component {
 	static defaultProps = {
 		menuList : {},
-		selectedMenuKeys : []
+		selectedMenuKeys : [],
+		contentList : []
 	};
 
 	constructor(props){
@@ -28,7 +29,8 @@ export default class LayoutView extends React.Component {
 					menuList={this.props.menuList} 
 					selectedKeys={this.props.selectedMenuKeys} />
 
-				<Content />
+				<Content 
+					contentList={this.props.contentList}/>
 			</div>		
 		);
 	}

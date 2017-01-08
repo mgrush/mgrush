@@ -1,4 +1,4 @@
-webpackJsonp([2,0],{
+webpackJsonp([2],{
 
 /***/ 0:
 /*!******************************!*\
@@ -8,11 +8,11 @@ webpackJsonp([2,0],{
 
 	"use strict";
 
-	__webpack_require__(/*! ./index.less */ 174);
+	__webpack_require__(/*! ./index.less */ 175);
 
 /***/ },
 
-/***/ 174:
+/***/ 175:
 /*!********************************!*\
   !*** ./common/base/index.less ***!
   \********************************/

@@ -9,6 +9,7 @@ import "./index.less";
 import React from "react";
 import ReactDOM from "react-dom";
 import LayoutView from "LayoutView";
+import Albums from "Albums";
 
 class Demo extends React.Component {
 	render(){
@@ -28,9 +29,14 @@ const menuList = {
 	}
 };
 
+const contentList = {
+	albums : [Albums, {}]
+};
+
 ReactDOM.render(
 	<LayoutView 
 		selectedMenuKeys={["picManage", "myPic"]} 
-		menuList={menuList} />,
+		menuList={menuList} 
+		contentList={contentList} />,
 	document.getElementById("root")
 );
